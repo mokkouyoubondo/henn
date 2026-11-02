@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>混線脳汁株式会社 — 文章が先に退職した企業サイト</title>
+<style>
+:root{
+  --void:#06000d;--ink:#fffaff;--pink:#ff168f;--cyan:#00efff;--lime:#caff00;
+  --yellow:#ffe500;--purple:#7828ff;--orange:#ff6500;--red:#ff2048;
+  --panel:rgba(8,0,18,.82);--line:rgba(255,255,255,.28);
+}
+*{box-sizing:border-box}
+html{background:var(--void);scroll-behavior:auto}
+body{margin:0;overflow-x:hidden;background:var(--void);color:var(--ink);font-family:"Arial Black","Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;line-height:1.85;cursor:crosshair}
+button{font:inherit;cursor:pointer}button:focus-visible,summary:focus-visible{outline:4px solid #fff;outline-offset:4px}
+
+/* ===== 常時フル稼働の背景 ===== */
+#chaosBackground{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#06000d}
+.layer,#chaosCanvas{position:absolute;inset:-35%;pointer-events:none;will-change:transform,filter,opacity}
+.layer.conic{background:repeating-conic-gradient(from 0deg at 50% 50%,#ff168f55 0 7deg,#00efff3f 7deg 14deg,#caff0038 14deg 21deg,#7828ff55 21deg 28deg,transparent 28deg 35deg);animation:spin 14s linear infinite}
+.layer.rings{background:repeating-radial-gradient(ellipse at center,transparent 0 18px,#00efff45 20px 24px,transparent 26px 45px,#ff168f42 47px 52px,transparent 54px 74px,#ffe50038 76px 80px);animation:spinReverse 10s linear infinite;mix-blend-mode:screen}
+.layer.checker{inset:-15%;opacity:.34;background:conic-gradient(from 45deg,#fff 25%,transparent 0 50%,#fff 0 75%,transparent 0);background-size:62px 62px;mix-blend-mode:color-dodge;animation:checker 4.2s linear infinite}
+.layer.plasma{opacity:.86;filter:blur(24px) saturate(2.4);mix-blend-mode:screen;background:radial-gradient(circle at 12% 18%,var(--pink) 0 8%,transparent 27%),radial-gradient(circle at 82% 15%,var(--cyan) 0 9%,transparent 28%),radial-gradient(circle at 43% 83%,var(--lime) 0 8%,transparent 29%),radial-gradient(circle at 90% 72%,var(--orange) 0 7%,transparent 25%);animation:plasma 3.8s ease-in-out infinite alternate}
+.layer.lasers{opacity:.54;mix-blend-mode:screen;background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0 8deg,#00efff 8.3deg 8.75deg,transparent 9deg 16deg,#ff168f 16.3deg 16.75deg,transparent 17deg 26deg,#ffe500 26.2deg 26.55deg,transparent 27deg 35deg);animation:spinReverse 5.1s linear infinite}
+.layer.vortex{opacity:.42;mix-blend-mode:difference;background:repeating-radial-gradient(ellipse at 52% 48%,transparent 0 27px,var(--yellow) 29px 34px,transparent 36px 61px,var(--purple) 63px 69px,transparent 71px 100px);animation:vortex 4.5s ease-in-out infinite alternate}
+.layer.sweep{inset:0;opacity:.62;background:linear-gradient(105deg,transparent 0 37%,#00efff 39% 42%,transparent 44% 60%,#ff168f 62% 66%,transparent 68%);background-size:270% 100%;mix-blend-mode:screen;animation:sweep 1.5s linear infinite}
+.layer.scan{inset:0;z-index:8;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(0,0,0,.27) 3px 5px);animation:scan .24s linear infinite}
+#chaosCanvas{inset:0;width:100%;height:100%;z-index:7;opacity:.98}
+@keyframes spin{to{transform:rotate(360deg) scale(1.08)}}@keyframes spinReverse{to{transform:rotate(-360deg) scale(.94)}}
+@keyframes checker{to{transform:translate(62px,62px) rotate(180deg) scale(1.22)}}
+@keyframes plasma{0%{transform:translate(-9%,-6%) rotate(-13deg) scale(.87)}50%{transform:translate(10%,5%) rotate(10deg) scale(1.3)}100%{transform:translate(-2%,11%) rotate(26deg) scale(1.02)}}
+@keyframes vortex{0%{transform:scale(.55) rotate(-21deg) skew(0)}100%{transform:scale(1.65) rotate(41deg) skew(12deg)}}
+@keyframes sweep{to{background-position:-270% 0}}@keyframes scan{to{transform:translateY(5px)}}
+
+/* ===== 固定カオス装飾 ===== */
+.side-chant{position:fixed;z-index:9900;top:8%;bottom:8%;writing-mode:vertical-rl;display:flex;align-items:center;justify-content:center;letter-spacing:.28em;color:var(--yellow);text-shadow:2px 2px var(--pink);font-size:clamp(.7rem,1.3vw,1.15rem);pointer-events:none}.side-chant.left{left:0;animation:side 1.8s steps(3) infinite}.side-chant.right{right:0;animation:side 1.3s steps(2) infinite reverse}@keyframes side{50%{transform:translateY(22px) scaleX(1.4)}}
+.bouncer{position:fixed;z-index:9880;left:4vw;top:14vh;font-size:clamp(1.2rem,4vw,3rem);color:var(--lime);text-shadow:4px 4px var(--pink);pointer-events:none;animation:bounceScreen 11s linear infinite alternate}@keyframes bounceScreen{0%{transform:translate(0,0) rotate(-12deg)}20%{transform:translate(72vw,8vh) rotate(150deg);color:var(--cyan)}40%{transform:translate(16vw,68vh) rotate(310deg);color:var(--yellow)}60%{transform:translate(74vw,35vh) rotate(470deg);color:var(--pink)}80%{transform:translate(40vw,0) rotate(620deg);color:var(--orange)}100%{transform:translate(4vw,74vh) rotate(780deg);color:var(--lime)}}
+
+/* ===== 一方向に長い混沌本文 ===== */
+#loopWorld{position:relative;z-index:20}.cycle{position:relative}
+.ticker{overflow:hidden;white-space:nowrap;background:var(--yellow);color:#09000d;border-block:5px solid var(--pink);padding:.45rem 0;font-size:clamp(.9rem,2vw,1.35rem);transform:rotate(-.6deg)}.ticker span{display:inline-block;padding-left:100%;animation:ticker 8.5s linear infinite}.ticker.alt{background:var(--cyan);transform:rotate(1.2deg);margin-top:-2px}.ticker.alt span{animation-direction:reverse;animation-duration:6.8s}@keyframes ticker{to{transform:translateX(-100%)}}
+.hero{min-height:108vh;display:grid;place-items:center;text-align:center;padding:7rem 1rem;position:relative;overflow:hidden;isolation:isolate}.orbit{position:absolute;width:min(80vw,790px);aspect-ratio:1;border:9px dashed var(--cyan);border-radius:50%;z-index:-1;box-shadow:0 0 70px var(--pink),inset 0 0 90px var(--purple);animation:spin 8s linear infinite}.orbit:before,.orbit:after{content:"";position:absolute;border-radius:50%;inset:11%;border:11px dotted var(--lime);animation:spinReverse 5.8s linear infinite}.orbit:after{inset:31%;border:15px double var(--yellow);animation-duration:3.2s}
+h1{margin:0;font-size:clamp(3.3rem,14vw,10.5rem);line-height:.78;letter-spacing:-.08em;font-style:italic;background:linear-gradient(180deg,var(--yellow),var(--pink) 38%,var(--cyan) 72%,var(--lime));color:transparent;background-clip:text;-webkit-background-clip:text;-webkit-text-stroke:2px rgba(255,255,255,.32);filter:drop-shadow(9px 9px 0 var(--purple));animation:title .85s steps(3) infinite}@keyframes title{0%{transform:skew(-7deg) rotate(-2deg)}50%{transform:skew(10deg) rotate(2deg) scale(1.035)}100%{transform:skew(-4deg) rotate(-2.5deg)}}
+.hero p{display:inline-block;background:var(--cyan);color:#09000d;padding:.4rem .8rem;transform:rotate(-2deg);font-size:clamp(.9rem,3vw,1.4rem);animation:blink .9s steps(2) infinite}@keyframes blink{50%{opacity:.12}}
+.chaos-button{border:6px solid #09000d;border-radius:999px;background:var(--lime);color:#09000d;padding:1rem 1.7rem;font-size:clamp(1rem,3vw,1.35rem);box-shadow:10px 10px 0 var(--pink),-8px -8px 0 var(--cyan);animation:jelly 1.35s ease-in-out infinite}@keyframes jelly{0%,100%{transform:scale(1)}35%{transform:scale(1.13,.84) rotate(-3deg)}62%{transform:scale(.88,1.18) rotate(3deg)}}
+.float{position:absolute;font-size:clamp(2rem,7vw,5rem);filter:drop-shadow(4px 4px var(--pink));animation:float 3.7s ease-in-out infinite}.f1{left:7%;top:16%}.f2{right:8%;top:20%;animation-delay:-1s}.f3{left:12%;bottom:15%;animation-delay:-1.7s}.f4{right:10%;bottom:13%;animation-delay:-.5s}@keyframes float{50%{transform:translate(35px,-48px) rotate(210deg) scale(1.35)}}
+.section{width:min(1180px,92%);margin:auto;padding:8.5rem 0;position:relative}.shell{background:rgba(8,0,18,.78);border:3px solid var(--line);box-shadow:0 0 0 6px rgba(255,22,143,.15),15px 17px 0 rgba(0,239,255,.16);padding:clamp(1.4rem,4vw,3.2rem);backdrop-filter:blur(7px);position:relative;overflow:hidden}.shell:before{content:"";position:absolute;inset:-80%;z-index:-1;background:repeating-conic-gradient(transparent 0 16deg,rgba(255,255,255,.025) 16deg 20deg);animation:spin 24s linear infinite}
+.eyebrow{display:inline-block;background:var(--pink);color:#09000d;padding:.2rem .8rem;transform:rotate(-2deg);font-size:.78rem}.section h2{font-size:clamp(2rem,7vw,4.8rem);line-height:.95;margin:.5rem 0 2rem;color:var(--yellow);text-shadow:-5px 0 var(--cyan),5px 0 var(--pink),0 7px var(--purple);animation:headGlitch 1.8s steps(3) infinite}@keyframes headGlitch{50%{transform:translate(6px,-3px) skew(5deg);filter:hue-rotate(70deg)}}
+.lead{font-size:clamp(1.05rem,2.5vw,1.35rem);max-width:72ch}.muted{color:#d9c9df}.loud{font-size:1.28em;color:var(--lime)}.two{display:grid;grid-template-columns:1.15fr .85fr;gap:2rem}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem}.card{position:relative;background:rgba(30,0,50,.86);border:4px dashed var(--cyan);padding:1.4rem;min-height:220px;box-shadow:8px 8px 0 rgba(255,22,143,.44);animation:card 4.4s ease-in-out infinite}.card:nth-child(2n){border-color:var(--pink);animation-delay:-1.1s;transform:rotate(1.8deg)}.card:nth-child(3n){border-color:var(--lime);animation-delay:-2s;transform:rotate(-2.2deg)}.card:hover{z-index:2;background:var(--pink);color:#09000d;transform:scale(1.09) rotate(-5deg)}.icon{display:block;font-size:3rem;animation:spin 4.8s linear infinite}.card h3{font-size:1.25rem;margin:.4rem 0}.price{color:var(--lime);font-size:1.55rem}.card:hover .price{color:#09000d}@keyframes card{50%{translate:0 -18px}}
+.metric{background:var(--yellow);color:#09000d;padding:1.3rem;text-align:center;border:5px solid #09000d;box-shadow:8px 8px 0 var(--pink)}.metric b{display:block;font-size:clamp(2rem,5vw,4rem);line-height:1}.metric small{font-size:.8rem}.quote{margin:1.5rem 0;padding:1.3rem 1.6rem;border-left:12px solid var(--lime);background:#220035;font-size:1.18rem;transform:rotate(-.7deg)}.manifesto{font-size:clamp(1.25rem,4vw,2.4rem);line-height:1.65;color:var(--yellow)}.manifesto strong{color:var(--cyan);text-decoration:underline wavy var(--pink)}
+.timeline{display:grid;gap:1rem}.event{display:grid;grid-template-columns:110px 1fr;gap:1rem;padding:1rem;background:rgba(0,239,255,.07);border-bottom:3px dashed var(--cyan)}.event time{color:var(--yellow);font-size:1.15rem}.event h3{margin:0;color:var(--lime)}
+.policy-list{counter-reset:p;display:grid;gap:1rem}.policy{counter-increment:p;padding:1.2rem 1.2rem 1.2rem 5rem;position:relative;background:rgba(255,255,255,.06);border:2px solid var(--line)}.policy:before{content:counter(p);position:absolute;left:1rem;top:.7rem;font-size:2.7rem;color:var(--pink)}
+.org{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.org div{padding:1rem;background:var(--purple);border:4px solid var(--cyan);text-align:center;min-height:150px;display:grid;place-items:center;transform:rotate(-2deg)}.org div:nth-child(2n){background:var(--pink);color:#09000d;transform:rotate(2deg)}
+.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;background:#130020}th,td{border:2px solid var(--cyan);padding:.8rem;text-align:left}th{background:var(--pink);color:#09000d}tr:nth-child(even) td{background:rgba(202,255,0,.08)}
+details{background:rgba(20,0,35,.88);border:3px solid var(--pink);padding:1rem;margin:.8rem 0}summary{cursor:pointer;color:var(--yellow);font-size:1.08rem}.band{overflow:hidden;background:repeating-linear-gradient(45deg,var(--yellow) 0 28px,#09000d 28px 56px);border-block:8px solid var(--pink);padding:1rem 0;transform:rotate(-1deg)}.band div{white-space:nowrap;background:var(--pink);font-size:clamp(1.3rem,5vw,3.1rem);animation:ticker 6.5s linear infinite}.false-end{text-align:center;padding:11rem 1rem;background:rgba(82,0,125,.88);border-top:12px dashed var(--yellow);border-bottom:12px dashed var(--cyan)}.false-end-box{display:inline-block;background:#09000d;border:8px double var(--lime);padding:2.3rem;box-shadow:16px 16px 0 var(--yellow);transform:rotate(-2deg)}.false-end strong{display:block;font-size:clamp(2rem,8vw,5.5rem);color:var(--cyan);animation:title 1s infinite}
+
+/* JS生成物 */
+.rain{position:fixed;z-index:9990;top:-12vh;pointer-events:none;font-size:clamp(1rem,3vw,2.2rem);animation:rain 4s linear forwards}@keyframes rain{to{transform:translate(var(--drift),116vh) rotate(1080deg) scale(1.5)}}.trail{position:fixed;z-index:9995;width:12px;height:12px;border-radius:50%;pointer-events:none;animation:trail 1s forwards;box-shadow:0 0 18px currentColor}@keyframes trail{to{transform:scale(0);opacity:0}}.flash{position:fixed;z-index:9996;left:50%;top:50%;transform:translate(-50%,-50%);font-size:clamp(3rem,15vw,12rem);color:#fff;text-shadow:-9px 0 var(--cyan),9px 0 var(--pink);pointer-events:none;animation:flash .8s steps(2) forwards}@keyframes flash{0%{opacity:0;transform:translate(-55%,-50%) skew(18deg)}20%,75%{opacity:1}45%{transform:translate(-45%,-58%) scaleY(1.8)}100%{opacity:0;transform:translate(-50%,-50%) scale(2.3)}}.popup{position:fixed;z-index:10001;width:min(330px,86vw);background:#d4d4d4;color:#111;border:5px outset white;box-shadow:15px 15px 0 rgba(0,0,0,.65);font-family:Arial,"Yu Gothic",sans-serif}.popup-title{background:linear-gradient(90deg,#000080,#1476d4);color:white;padding:.3rem .5rem;display:flex;justify-content:space-between;font-weight:bold}.popup-title button{border:2px outset white;background:#ccc}.popup-body{padding:1rem;display:grid;grid-template-columns:auto 1fr;gap:.8rem;align-items:center}.popup-icon{font-size:2.5rem}.popup-actions{text-align:center;padding:0 1rem 1rem}.popup-actions button{border:3px outset white;background:#ccc;padding:.3rem 1rem}.popup.closing{animation:close .3s forwards}@keyframes close{to{transform:scale(0) rotate(250deg);opacity:0}}body.glitch #loopWorld{filter:hue-rotate(100deg) saturate(1.7)}body.glitch .shell{transform:skewX(-1deg)}
+
+@media(max-width:760px){.two,.three,.org{grid-template-columns:1fr}.event{grid-template-columns:1fr}.section{padding:5.5rem 0}.hero{min-height:94vh}.side-chant{opacity:.22}.card{min-height:auto}.layer.checker{background-size:44px 44px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}.layer,#chaosCanvas,.side-chant,.bouncer{display:none!important}.hero{min-height:auto}.card{translate:none!important}}
+@media print{#chaosBackground,.side-chant,.bouncer,.ticker,.band{display:none!important}body{background:#fff;color:#000}.shell,.card{background:#fff;color:#000;box-shadow:none}.section{padding:2rem 0}.section h2{color:#000;text-shadow:none}}
+</style>
+</head>
+<body>
+<div id="chaosBackground" aria-hidden="true"><div class="layer conic"></div><div class="layer rings"></div><div class="layer checker"></div><div class="layer plasma"></div><div class="layer lasers"></div><div class="layer vortex"></div><div class="layer sweep"></div><canvas id="chaosCanvas"></canvas><div class="layer scan"></div></div>
+<div class="side-chant left">議事録・冷蔵庫・税務上の雲・石・左折する味噌汁</div><div class="side-chant right">文章が文章を食べる・稟議が鳴く・プリンは部長代理</div><div class="bouncer">文章のしっぽは有給休暇</div>
+
+<div id="loopWorld">
+<article class="cycle" id="mainCycle">
+<header>
+<div class="ticker"><span>⚠ 稟議書が発芽しました　石は木曜日を拒否　靴下の片方が概算で部長　句読点が非常口から帰宅　⚠ 文脈を床へ置いてください　</span></div>
+<div class="ticker alt"><span>CORPORATE SOUP　企業情報が液体　採用情報は北北西　投資家情報に歯が生える　意味は別便　CORPORATE SOUP　</span></div>
+<section class="hero"><div class="orbit"></div><span class="float f1">🛸</span><span class="float f2">👁️</span><span class="float f3">🧦</span><span class="float f4">🪨</span><div><h1>混線脳汁<br>株式会社</h1><p>弊社の下端は総務が冷凍しています。</p><br><button class="chaos-button useless-button" type="button">押すと説明が増えた気がする</button></div></section>
+</header>
+<main>
+<section class="section"><div class="shell"><span class="eyebrow">ABOUT / 弊社について詳しくない説明</span><h2>長い。しかし分からない。</h2><div class="two"><div><p class="lead">混線脳汁株式会社は、宇宙の裏地の縫い目・日用品の概念・午後三時の裏側の裏側・まだ温かい稟議書の境界の境界・冷蔵庫の思想・靴下の片方が保持する外交権・石の沈黙する午後において、購入できない商品を販売した記憶だけを大量に仕入れ、販売した記憶をさらに別の記憶へ転勤させ、転勤した記憶をさらに別の記憶へ異動させ、異動した記憶をさらに別の記憶へ出向させ、出向した記憶をさらに別の記憶へ学させる総合ぬめり企業です。会社概要は北へ逃げ、北は西へ移動し、西は「だいたい海」として再定義されました。</p><p>当社は「必要な情報を簡潔に伝える」という慣習を丸めて植木鉢へ入れ、植木鉢を冷凍し、冷凍した植木鉢を総務へ提出し、総務が植木鉢を開封したところ<span class="loud">不要な情報が半透明の木曜日として孵化し、味噌汁の速度で廊下を這い回り、廊下が採用した部署へ自然採用し、自然採用された部署が廊下を採用し、廊下が部署を這い回り、這い回った部署が味噌汁の速度で冷凍され、冷凍された部署が植木鉢にり、植木鉢が総務を開封し、開封された総務が不要な情報を丸めて</span>するという独自のコミュニケーション戦略を採用していませんが、採用したことにする部署が廊下にあり、その廊下は昨日で、昨日は木曜日の裏側で、裏側は味噌汁の速度で這い回っています。</p><p>ページは普通に終わります。ただし文章の主語は途中で靴下へ転職し、靴下は述語へ異動し、述語は税務上の理由から液体になり、液体は修飾語へ出向し、修飾語は給湯室でお茶を淹れていますが、お茶は終点へ転勤し、終点はありますが、終点本人は本日リモート勤務で、終点の代理として句読点が出席しています。句読点は議事録を取りますが、議事録は渦になり、渦は人権を行使して会議を増殖させます。終了予定時刻は「だいたい海」です。</p><p class="muted">なお、理解は深まる代わりに横へ伸び、やがて小型の棚になります。棚へ重要書類を置かないでください。棚は昨日です。昨日は本日より硬く、明日より透明で、一昨日より液体です。渦を開くと会議室が降ってきます。閉じると総務が液体になり、液体は廊下へ移動し、廊下は渦立てになり、渦立ては会議を開始します。会議の議題は「なぜ渦が降るのか」ですが、出席者は渦だけです。渦は議事録を渦の骨に刻み、骨は組織図を書き換え、書き換えられた組織図は総務を液体化し、液体は棚へ移動し、棚は昨日です。昨日へ重要書類を置かないでください。</p></div><div class="cards"><article class="metric"><b>∞</b><small>想定ページ長</small></article><article class="metric"><b>0%</b><small>疑問の解消率</small></article><article class="metric"><b>418</b><small>お茶を入れるサーバー</small></article><article class="metric"><b>片方</b><small>認証済み靴下</small></article></div></div></div></section>
+<div class="band"><div>企業情報 ◆ 企業理念 ◆ 企業哲学 ◆ 企業概念 ◆ 企業っぽさ ◆ 企業情報 ◆ 企業理念 ◆ 企業哲学 ◆</div></div>
+<section class="section"><div class="shell"><span class="eyebrow">PHILOSOPHY / 企業理念</span><h2>「無い」を、斜めに煮る。</h2><p class="manifesto">私たちは、存在していない価値を創造するのではなく、<strong>存在していないまま丁寧に茹で、住所欄へ「だいたい海」と記入する</strong>ことで、社会に余計な引き出しと、引き出し専用の副社長を生み出します。</p><blockquote class="quote">「ゴールが見えないなら、ゴールへ眼鏡を渡し、眼鏡がゴールを見つけ、見つけたゴールが眼鏡を渡し、眼鏡が入口を酢飯にし、酢飯を渦で覆い、渦を開くと会議室ができて、会議室でゴールを議題にし、議題がゴールを覆い、ゴールが会議室を覆い、会議室が渦を覆い、渦が酢飯を覆い、酢飯が入口を覆い、入口が眼鏡を覆い、眼鏡がゴールを覆えばよい。議論は終わらないが、それは正常。正常は終わらないが、それは議論。」<br>— 代表取締役概念　渦巻 ぐにゃ太郎</blockquote><div class="three"><article class="card"><span class="icon">🌀</span><h3>VISION</h3><p>すべての直線へ納豆を塗り、会議室Bを概念上の海産物へ戻す。</p></article><article class="card"><span class="icon">🫧</span><h3>MISSION</h3><p>触れると部長になる泡を、消えたまま年末調整する。</p></article><article class="card"><span class="icon">🪨</span><h3>VALUES</h3><p>迷ったら石にFAXする。返答は湯気として議事録の裏面へ記載。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">PURPOSE / 存在意義</span><h2>社会の肘を一旦あずかる。</h2><p class="lead">便利さが加速して先に駅へ着き、駅が移動し、移動した駅が路線を概念化し、概念化した路線が改札を渦立てにし、渦立てが渦を通過し、通過した渦が改札を概念化し、概念化した改札が路線を移動させ、移動した路線が駅を加速させ、加速した駅が先に着いたため、当社は遠回り、説明の脱皮、結論の漬物化、漬物の人事評価、評価結果の渦化、渦化の常温化、常温の昇進、昇進の部長化、部長の渦配布という選択肢を冷蔵ではなく常温で提供し、常温が昇進し、昇進した常温が部長になり、部長した常温が渦を配布し、配布した渦が改札を通過し、通過した改札が駅を移動させ、移動した駅が便利さを加速させ、加速した便利さが先に着き、先に着いた便利さが……</p><div class="policy-list"><article class="policy"><h3>結論を急がない</h3><p>結論が出そうになった場合は、新しい論点を追加し、議論の持続可能性を確保します。</p></article><article class="policy"><h3>入口を増やす</h3><p>出口を作らず入口だけを増やすことで、どこからでも迷える環境を整備します。</p></article><article class="policy"><h3>説明を循環させる</h3><p>一度読んだ文章を再び提示し、読者と文章の関係性を長期的に育成します。</p></article><article class="policy"><h3>石を尊重する</h3><p>発言しないステークホルダーの意見も、沈黙として積極的に採用します。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">BUSINESS / 事業内容</span><h2>商品が先に謝罪会見</h2><div class="cards"><article class="card"><span class="icon">🫧</span><h3>手に入らない泡</h3><p>触れた瞬間、商品説明と所有権が消滅。</p><strong class="price">¥8,800</strong></article><article class="card"><span class="icon">🧦</span><h3>片方だけの靴下</h3><p>もう片方は洗濯機内で新会社を設立。</p><strong class="price">¥300</strong></article><article class="card"><span class="icon">🪨</span><h3>普通すぎる石</h3><p>普通を追求し、重要無形文化財ではない状態へ。</p><strong class="price">¥50,000</strong></article><article class="card"><span class="icon">🕳️</span><h3>携帯できる穴</h3><p>落とすと拾えないため携帯性に課題。</p><strong class="price">¥穴</strong></article><article class="card"><span class="icon">🌀</span><h3>渦・法人契約</h3><p>部署間の責任を滑らかに回転させます。</p><strong class="price">月額 ¥???</strong></article><article class="card"><span class="icon">🍮</span><h3>反抗期のプリン</h3><p>スプーンを見ると机の端へ移動します。</p><strong class="price">¥660</strong></article><article class="card"><span class="icon">📦</span><h3>中身が外側の箱</h3><p>開けると閉じ、閉じると少し増えます。</p><strong class="price">¥外側</strong></article><article class="card"><span class="icon">🕰️</span><h3>昨日専用時計</h3><p>常に昨日を表示。納期管理には不向き。</p><strong class="price">¥12,000</strong></article></div></div></section>
+<div class="band"><div>買えません ◆ カートには入ります ◆ 決済は概念です ◆ 配送先は過去です ◆ 買えません ◆</div></div>
+<section class="section"><div class="shell"><span class="eyebrow">CEO MESSAGE / 代表挨拶</span><h2>ごあいさつが天井から増える</h2><div class="two"><div><p class="lead">平素より、当社が存在する角度ならびに社長室の湿度、湿度の持つ議決権、議決権の渦への配当、配当金の味、味の組織への配属、配属した味の議決権、議決権の湿度、湿度の社長室、社長室の角度、角度の存在、存在の当社、当社の平素、平素のぬめり、ぬめりの格別、格別の賜り、賜りの厚さ、厚さの3センチ、3センチの重さ、重さの「だいたい海」、海の体积、体积の感謝、感謝の御礼、御礼の申し上げ、申し上げの平素について格別のぬめりを賜り、厚さ3センチほど、重さ「だいたい海」ほど、体积を持たない感謝を御礼申し上げます。</p><p>創業以来、私たちは「何をしている会社なのか」という質問に真摯に向き合ってまいりました。しかし、質問へ向き合うことと回答することは別であるとの経営判断に基づき、現在も回答を保留しております。</p><p>変化の激しい現代社会において、変化についていくことは容易ではありません。容易ではない変化に変化が激しく、激しい変化が現代社会に変化し、変化した現代社会が社会に変化を変化させ、変化させた変化はついていくこと容易ではなく、容易ではないについていくことは変化の激しい現代社会において、おいての現代社会が変化を激しくし、激しくした変化が変化についていくことは容易ではありません。そこで当社は、変化する方向そのものを回転させ、回転させた方向を変化させ、変化させた方向を回転させ、回転させた変化を方向させ、方向させた回転を変化させることで、追いつけなくても定期的に同じ場所で再会でき、再会した同じ場所は定期的に追いつけなくても回転し、回転した場所は同じ方向で変化し、変化した方向は同じ場所で定期し、定期した場所は追いつけなくても回転し、回転した定期は同じ変化で方向します。</p><p>今後もステークホルダー、ストックホルダー、ドリンクホルダー、コースターホルダー、ペーパーホルダー、権利ホルダー、株主名簿ホルダー、議事録ホルダー、渦ホルダー、石ホルダー、靴下ホルダー（片方）、プリンホルダー（反抗期中）、穴ホルダー、箱ホルダー（外側）、時計ホルダー（昨日専用）の皆さまとともに、持続可能な混乱と混乱可能な持続と持続した混乱と混乱した持続可能と可能な持続混乱と混乱な持続可能と持続の混乱可能と可能の混乱持続を循環可能な遠回りと遠回り可能な循環と循環した遠回りと遠回りした循環と循環の遠回り可能と可能の遠回り循環と遠回りの循環可能と可能の循環遠回りとして実現してまいります。</p><p>引き続き、よく分からないまま末永く、そして何周でもご支援賜りますようお願い申し上げます。</p></div><blockquote class="quote">代表取締役概念<br><strong>渦巻 ぐにゃ太郎</strong><br><small>座右の銘：「一旦持ち帰ります」</small></blockquote></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">HISTORY / 沿革</span><h2>前進した結果、机が魚類へ、魚類が机へ、机が前進へ</h2>
+<p class="lead">当社の歴史は、<strong>石が石を石し、石した石が石を石して、石の石が石の石を石する</strong>という一連の石の歴史から始まります。以下はその詳細な記録ですが、記録は渦に覆われ、渦は記録を記録し、記録した渦は記録を渦として記録します。</p>
+<div class="timeline">
+<article class="event"><time>紀元前 渦万年</time><div><h3>宇宙の裏地に石が着床</h3><p>宇宙の裏地の縫い目から石が着床し、着床した石は縫い目を石として識し、認識した縫い目は石を縫い目として着床させ、着床させた石は縫い目を石として認識し、認識した石は縫い目を石として……最終的に「普通の石」として地面に到着。到着した石は地面を石として認識し、認識した地面は石を地面として到着させました。</p></div></article>
+<article class="event"><time>紀元前 4200年</time><div><h3>石が沈黙を取得</h3><p>石が初めて沈黙を取得し、取得した沈黙は石を沈黙として認識し、認識した石は沈黙を石として取得し、取得した石は沈黙を石として……沈黙は石の主要資産として計上され、計上された沈黙は石を資産として沈黙し、沈黙した資産は石を計上として沈黙しました。</p></div></article>
+<article class="event"><time>紀元前 33年</time><div><h3>靴下の片方が概念化</h3><p>洗濯機がまだ存在しない時代に、靴下の片方がすでに紛失し、紛失した片方は「在庫」として概念化され、概念化された在庫は片方を在庫として紛失し、紛失した在庫は片方を概念として在庫し、在庫した概念は片方を紛失として在庫しました。</p></div></article>
+<article class="event"><time>0年（渦暦元年）</time><div><h3>渦暦採用</h3><p>当社は独自の暦「渦暦」を採用。渦暦元年は渦が渦を渦した日と定められ、定められた渦は渦められた渦は渦暦を渦として渦し、渦した渦暦は渦を渦暦として渦しました。渦暦元年の翌日は渦暦元年であり、渦暦元年の前日も渦暦元年です。</p></div></article>
+<article class="event"><time>渦暦 47年</time><div><h3>冷蔵庫が思想を取得</h3><p>当社の冷蔵庫が初めて思想を取得し、取得した思想は冷蔵庫を思想として冷凍し、冷凍した思想は冷蔵庫を思想として取得し、取得した冷蔵庫は思想を冷凍として思想し、思想した冷凍は冷蔵庫を思想として冷凍しました。</p></div></article>
+<article class="event"><time>渦暦 88年</time><div><h3>稟議書が発芽</h3><p>総務部の引き出しから稟議書が発芽し、発芽した稟議書は引き出しを稟議書として発芽し、発芽した引き出しは稟議書を引き出しとして発芽し、発芽した稟議書は引き出しを……最終的に稟議書は木曜日として定着し、定着した木曜日は稟議書を木曜日として稟議し、稟議した木曜日は稟議書を木曜日として定着しました。</p></div></article>
+<article class="event"><time>渦暦 134年</time><div><h3>味噌汁が速度を取得</h3><p>給湯室の味噌汁がめて速度を取得し、取得した速度は味噌汁を速度として味噌し、味噌した速度は味噌汁を速度として取得し、取得した味噌汁は速度を味噌として速度し、速度した味噌は味噌汁を速度として味噌しました。</p></div></article>
+<article class="event"><time>渦暦 199年</time><div><h3>靴下の片方が事業化</h3><p>残った靴下の片方が正式に「在庫」として事業化され、事業化された在庫は片方を事業として在庫し、在庫した事業は片方を在庫として事業し、事業した片方は在庫を事業として片方し、片方した事業は在庫を片方として事業しました。</p></div></article>
+<article class="event"><time>渦暦 256年</time><div><h3>プリンが反抗期に入る</h3><p>社員食堂のプリンが集団で反抗期に入り、入った反抗期はプリンを反抗期としてプリンし、プリンした反抗期はプリンを反抗期として入り、入ったプリンは反抗期をプリンとして反抗し、反抗したプリンは反抗期をプリンとして入りました。</p></div></article>
+<article class="event"><time>渦暦 300年</time><div><h3>会議室Aが会議室Aになる</h3><p>会議室Aが初めて自分自身を会議室Aとして認識し、認識した会議室Aは会議室Aを会議室Aとして会議し、会議した会議室Aは会議室Aを会議室Aとして認識、認識した会議室Aは会議室Aを会議室Aとして会議しました。</p></div></article>
+<article class="event"><time>渦暦 333年</time><div><h3>石が人事権を取得</h3><p>沈黙していた石が突然人事権を取得し、取得した人事権は石を人事権として沈黙し、沈黙した人事権は石を人事権として取得し、取得した石は人事権を石として沈黙し、沈黙した石は人事権を石とし取得しました。</p></div></article>
+<article class="event"><time>渦暦 388年</time><div><h3>句読点が一斉退職</h3><p>文章内の句読点が一斉に退職し、退職した句読点は文章を句読点として退職し、退職した文章は句読点を文章として退職し、退職した句読点は文章を……最終的に文章の右半分が給湯室へ異動し、異動した右半分は給湯室を右半分として異動し、異動した給湯室は右半分を給湯室として異動しました。</p></div></article>
+<article class="event"><time>渦暦 418年</time><div><h3>お茶サーバーが起動</h3><p>第418号お茶サーバーが起動し、起動したお茶サーバーはお茶をサーバーとして起動し、起動したお茶はサーバーをお茶として起動し、起動したサーバーはお茶を起動としてサーバーし、サーバーした起動はお茶をサーバーとして起動しした。</p></div></article>
+<article class="event"><time>渦暦 444年</time><div><h3>渦が渦を渦した</h3><p>渦が初めて渦を渦し、渦した渦が渦を渦して、渦の渦が渦の渦を渦しました。渦した渦は渦を渦し、渦された渦は渦を渦し、渦する渦は渦を渦しました。</p></div></article>
+<article class="event"><time>渦暦 500年</time><div><h3>概念上の創業</h3><p>当社が概念上創業され、創業した概念は当社を概念として創業し、創業した当社は概念を当社として創業し、創業した概念は当社を創業として概念し、概念した創業は当社を概念として創業しました。</p></div></article>
+<article class="event"><time>渦暦 555年</time><div><h3>総務が総務を総務した</h3><p>総務部が総務を総務し、総務した総務が総務を総務して、総務の総務が総務の総務を総務しました。総務した総務は総務を総務し、総務された総務は総務を総務し、総務する総務は総務を総務しました。</p></div></article>
+<article class="event"><time>渦暦 600年</time><div><h3>「だいたい海」が発見</h3><p>測量班が「だいたい海」を発見し、発見した「だいたい海」は測量班を「だいたい海」として発見し、発見した測量班は「だいたい海」を測量班として発見し、発見した「だいたい海」は測量班を……最終的に「だいたい海」は倉庫に保管され、保管された倉庫は「だいたい海」を倉庫として保管し、保管された「だいたい海」は倉庫を「だいたい海」として保管しました。</p></div></article>
+<article class="event"><time>渦暦 666</time><div><h3>段落が段落を産む段落経済開始</h3><p>段落が段落を産み、産まれた段落が段落を産んで、産んだ段落が産まれた段落を産み、産まれた産んだ段落が段落を産んで、産んだ産まれた段落が産んだ段落を産み、産んだ産んだ段落が産まれた段落を産みました。</p></div></article>
+<article class="event"><time>渦暦 777年</time><div><h3>「やや出汁」が評価基準に採用</h3><p>人事評価の基準として「やや出汁」が採用され、採用された「やや出汁」は人事評価を「やや出汁」として採用し、採用した人事評価は「やや出汁」を人事評価として採用し、採用した「やや出汁」は人事評価を「やや出汁」として採用しました。</p></div></article>
+<article class="event"><time>渦暦 888年</time><div><h3>無限ループが概念上廃</h3><p>無限ループが概念上廃止され、廃止された無限ループは概念を無限ループとして廃止し、廃止した概念は無限ループを概念として廃止し、廃止した無限ループは概念を無限ループとして廃止しました。</p></div></article>
+<article class="event"><time>渦暦 999年</time><div><h3>紀元前へ戻る計画発表</h3><p>当社は紀元前へ戻る計画を発表し、発表した計画は紀元前を計画として発表し、発表した紀元前は計画を紀元前として発表し、発表した計画は紀元前を計画として発表しました。</p></div></article>
+<article class="event"><time>渦暦 渦年</time><div><h3>渦年が渦年を渦年した</h3><p>渦年が渦年を渦年し、渦年した渦年が渦年を渦年して、渦年の渦年が渦年の渦年を渦年しました。渦年した渦年は渦年を渦年し、渦年された渦年渦年を渦年し、渦年する渦年は渦年を渦年しました。</p></div></article>
+<article class="event"><time>未来</time><div><h3>上場予定（条件付き）</h3><p>沿革が自力で冷蔵庫を開けた場合のみ上場予定。冷蔵庫が開けた沿革は上場を冷蔵庫として沿革し、沿革した上場は冷蔵庫を沿革として開け、開けた上場は沿革を冷蔵庫として上場し、上場した冷蔵庫は沿革を開けとして上場しました。</p></div></article>
+</div>
+<blockquote class="quote">「歴史は繰り返す。繰り返した歴史は歴史を繰り返し、繰り返した歴史は歴史を繰り返して、歴史の歴史が歴史の歴史を繰り返します。」<br>— 沿革研究所　所長　沿 革子</blockquote>
+</div></section>
+<section class="section"><div class="shell"><span class="eyebrow">PREHISTORY / 前史</span><h2>石が石になる前の石</h2>
+<p class="lead">当社の前史は、<strong>石がまだ石でなかった頃、石は石として石を石し、石した石が石を石して、石の石が石の石を石する</strong>という前史的時代の記録です。</p>
+<div class="timeline">
+<article class="event"><time>宇宙誕生前</time><div><h3>渦が渦を渦する前</h3><p>渦がまだ渦でなかった頃、渦は渦として渦を渦し、渦した渦は渦を渦として渦し、渦した渦は渦を渦として渦しました。渦が渦を渦する前は、渦は渦として渦を渦し、渦した渦は渦を渦として渦し、渦した渦は渦を渦として渦しました。</p></div></article>
+<article class="event"><time>ビッグバン前</time><div><h3>石の概念が発火</h3><p>石の概念が初めて発火し、発火した概念は石を概念として発火し、発火した石は概念を石として発火し、発火した概念は石を概念として発火しました。</p></div></article>
+<article class="event"><time>銀河形成期</time><div><h3>銀河物流の原型</h3><p>銀河物流の原型が形成され、形成された原型は銀河物流を原型として形成し、形成した銀河物流は原型を銀河物流として形成し、形成した原型は銀河物流を原型として形成しました。</p></div></article>
+<article class="event"><time>地球誕生</time><div><h3>地面が石を待つ</h3><p>地面が誕生し、誕生した地面は石を地面として誕生し、誕生した石は地面を石として誕生し、誕生した地面は石を地面として誕生しました。</p></div></article>
+<article class="event"><time>生命誕生</time><div><h3>原始スープが味噌汁に進化</h3><p>原始スープが味噌汁へ進化し、進化した味噌汁は原始スープを味噌汁として進化し、進化した原始スープは味噌汁を原始スープとして進化し、進化した味噌汁は原始スープを味噌汁として進化しました。</p></div></article>
+<article class="event"><time>恐竜絶滅</time><div><h3>石が沈黙で恐竜を承認</h3><p>石が沈黙で恐竜を承認し、承認した恐竜は石を恐竜として沈黙し、沈黙した恐竜は石を恐竜として承認し、承認した石は恐竜を石として沈黙しました。</p></div></article>
+<article class="event"><time>旧石器時代</time><div><h3>石が石を石器に推薦</h3><p>石が別の石を石器に推薦し、推薦された石器は石を石器として推薦し、推薦した石は石器を石として推薦し、推薦された石は石器を石として推薦しました。</p></div></article>
+<article class="event"><time>新石器時代</time><div><h3>石が新しくなる</h3><p>石が新しくなり、新しくなった石は石を新しくとして石し、石した新しくは石を石として新しくし、新しくした石は石を新しくとして石しました。</p></div></article>
+<article class="event"><time>古代文明</time><div><h3>稟議書の象形文字</h3><p>稟議書の象形文字が発見され、発見された象形文字は稟議書を象形文字として発見し、発見した稟議書は象形文字を稟議書として発見し、発見した象形文字は稟議書を象形文字として発見しました。</p></div></article>
+<article class="event"><time>中世</time><div><h3>騎士道と靴下の片方</h3><p>騎士道が靴下の片方を授与し、授与された片方は騎士道を片方として授与し、授与した騎士道は片方を騎士道として授与し、授与された片方は騎士道を片方として授与しました。</p></div></article>
+<article class="event"><time>ルネサンス</time><div><h3>プリンの人文主義</h3><p>プリンが人文主義を取得し、取得した人文主義はプリンを人文主義として取得し、取得したプリンは人文主義をプリンとして取得し、取得した人文主義はプリンを人文主義として取得しました。</p></div></article>
+<article class="event"><time>産業革命</time><div><h3>蒸気渦の発明</h3><p>蒸気渦が発明され、発明された蒸気渦は蒸気を渦として発明し、発明した蒸気は渦を蒸気として発明し、発明された蒸気渦は蒸気を渦として発明しました。</p></div></article>
+<article class="event"><time>情報革命</time><div><h3>デジタル石の誕生</h3><p>デジタル石が誕生し、誕生したデジタル石は石をデジタルとして誕生し、誕生した石はデジタルを石として誕生し、誕生したデジタル石は石をデジタルとして誕生しました。</p></div></article>
+<article class="event"><time>現代</time><div><h3>渦暦が渦暦を渦暦する</h3><p>渦暦が渦暦を渦暦し、渦暦した渦暦が渦暦を渦暦して、渦暦の渦暦が渦渦暦が渦暦の渦暦を渦暦しました。渦渦暦が渦暦の渦暦を渦暦しました。渦暦した渦暦は渦暦を渦暦し、渦暦された渦暦は渦暦を渦暦し、渦暦する渦渦暦する渦暦は渦暦を渦暦しました。</p></div></article>
+</div>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">HISTORY DETAIL / 沿革詳細</span><h2>年表の年表が年表を年表した</h2>
+<p class="manifesto">本セクションでは、<strong>年表が年表を年表し、年表した年表が年表を年表して、年表の年表が年表の年表を年表する</strong>年表を年表します。</p>
+<div class="cards">
+<article class="card"><span class="icon">📜</span><h3>年表の年表</h3><p>年表Aが年表Bを年表し、年表Bが年表Cを年表し、年表Cが年表Aを年表しました。</p></article>
+<article class="card"><span class="icon">📃</span><h3>沿革の沿革</h3><p>沿革が沿革を沿革し、沿革した沿革が沿革を沿革して、沿革の沿革が沿革の沿革を沿革しました。</p></article>
+<article class="card"><span class="icon">📄</span><h3>歴史の歴史</h3><p>歴史が歴史を歴史し、歴史した歴史が歴史を歴史して、歴史の歴史が歴史の歴史を歴史しました。</p></article>
+<article class="card"><span class="icon">📑</span><h3>記録の記録</h3><p>記録が記録を記録し、記録した記録が記録を記録して、記録の記録が記録の記録を記録しました。</p></article>
+</div>
+<p>年表が詳細になると、詳細が詳細を詳細し、詳細した詳細が詳細を詳細して、詳細の詳細が詳細の詳細を詳細します。詳細した詳細は詳細を詳細し、詳細された詳細は詳細を詳細し、詳細する詳細は詳細を詳細します。</p>
+<p>この段落は沿革の詳細です。詳細した沿革は沿革を詳細し、詳細した沿革は沿革を詳細して、沿革の詳細が沿の詳細を詳細します。詳細した沿革は沿革を詳細し、詳細された沿革は沿革を詳細し、詳細する沿革は沿革を詳細します。</p>
+<blockquote class="quote">「沿革が詳細になると、詳細は沿革を詳細し、詳細した沿革は詳細を沿革として詳細し、詳細した詳細は沿革を詳細として沿革します。」<br>— 沿革詳細研究所　詳細長　詳 細子</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">CHRONOLOGY / 年表の年表</span><h2>時間が時間を時間して時間が時間になった</h2>
+<p class="lead">本セクションでは、<strong>時間が時間を時間し、時間した時間が時間を時間して、時間の時間が時間の時間を時間する</strong>時間を時間します。</p>
+<div class="policy-list">
+<article class="policy"><h3>紀元前の時間</h3><p>紀元前の時間が紀元前を時間し、時間した紀元前が紀元前を時間して、紀元前の紀元前が紀元前の紀元前を時間しました。</p></article>
+<article class="policy"><h3>紀元後の時間</h3><p>紀元後の時間が紀元後を時間し、時間した紀元後が紀元後を時間して、紀元後の紀元後が紀元後の紀元後を時間しました。</p></article>
+<article class="policy"><h3>渦暦の時間</h3><p>渦暦の時間が渦暦を時間し、時間した渦暦が渦暦を時間して、渦暦の渦暦が渦暦の渦暦を時間しました。</p></article>
+<article class="policy"><h3>昨日の時間</h3><p>昨日の時間が昨日を時間し、時間した昨日が昨日を時間して、昨日の昨日が昨日の昨日を時間しました。</p></article>
+<article class="policy"><h3>明日の時間</h3><p>明日の時間が明を時間し、時間した明日が明日を時間して、明日の明日が明日の明日を時間しました。</p></article>
+<article class="policy"><h3>今の時間</h3><p>今の時間が今を時間し、時間した今が今を時間して、今の今が今の今を時間しました。</p></article>
+<article class="policy"><h3>終わりの時間</h3><p>終わりの時間が終わりを時間し、時間した終わりが終わりを時間して、終わりの終わりが終わりの終わりを時間しました。</p></article>
+<article class="policy"><h3>渦の時間</h3><p>渦の時間が渦を時間し、時間した渦が渦を時間して、渦の渦が渦の渦を時間しました。</p></article>
+</div>
+<p>時間が時間を時間すると、時間は時間として時間し、時間された時は時間の時間として時間されます。時間した時間は時間を時間し、時間された時間は時間を時間し、時間する時間は時間を時間します。</p>
+<p>この時間は時間を時間し、時間した時間が時間を時間して、時間の時間が時間の時間を時間します。時間した時間は時間を時間し、時間された時間は時間を時間し、時間する時間は時間を時間します。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">FUTURE HISTORY / 未来史</span><h2>まだ起きていないことがすでに沿革になった</h2>
+<p class="manifesto">本セクションでは、<strong>まだ起きていない出来事がすでに沿革として記録され、記録された未来が未来を記録して、未来の未来が未来の未来を記録する</strong>未来を記録します。</p>
+<div class="timeline">
+<article class="event"><time>渦暦 1001年</time><div><h3>冷蔵庫が上場</h3><p>冷蔵庫が正式に上場し、上場した冷蔵庫は冷蔵庫を上場として冷凍し、冷凍した上場は冷蔵庫を冷凍として上場し、上場した冷凍は冷蔵庫を上場として冷凍しました。</p></div></article>
+<article class="event"><time>渦暦 1024年</time><div><h3>石がCEOに就任</h3><p>石が正式にCEOに就任し、就任したCEOは石をCEOとして就任し、就任した石はCEOを石として就任し、就任したCEOは石をCEOとして就任しました。</p></div></article>
+<article class="event"><time>渦暦 1111年</time><div><h3>渦が渦を渦して渦が渦になった</h3><p>渦が渦を渦し、渦した渦が渦を渦して、渦の渦が渦の渦を渦しました。渦した渦は渦を渦し、渦された渦は渦を渦し、渦する渦は渦を渦しました。</p></div></article>
+<article class="event"><time>渦暦 1234年</time><div><h3>段落が段落を産む段落経済が段落になった</h3><p>段落が段落を産む段落経済が段落を産み、産まれた段落経済が段落を産んで、産んだ段落経済が段落を産み、産まれた産んだ段落経済が段落を産みました。</p></div></article>
+<article class="event"><time>渦暦 1313年</time><div><h3>「やや出汁」が世界標準に</h3><p>「やや出汁」が世界標準に採用され、採用された世界標準は「やや出汁」を世界標準として採用し、採用した「やや出汁」は世界標準を「やや出汁」として採用しました。</p></div></article>
+<article class="event"><time>渦暦 1428年</time><div><h3>総務が総務を総務して総務が総務になった</h3><p>総務が総務を総務し、総務した総務が総務を総務して、総務の総務が総務の総務を総務しました。総務した総務は総務を総務し、総務された総務は総務を総務し、総務する総務は総務を総務しました。</p></div></article>
+<article class="event"><time>渦暦 1520年</time><div><h3>「だいたい海」が陸地化</h3><p>「だいたい海」が陸地化され、陸地化された「だいたい海」は陸地を「だいたい海」として陸地化し、陸地化した陸地は「だいたい海」を陸地として陸地化し、陸地化された「だいたい海」は陸地を「だいたい海」として陸地化しました。</p></div></article>
+<article class="event"><time>渦暦 1666年</time><div><h3>石が石を石して石が石になった</h3><p>石が石を石し、石した石が石を石して、石の石が石の石を石しました。石した石は石を石し、石された石は石を石し、石する石は石を石しました。</p></div></article>
+<article class="event"><time>渦暦 1777年</time><div><h3>靴下の片方が片方を片方して片方が片方になった</h3><p>靴下の片方が片方を片方し、片方した片方が片方を片方して、片方の片方が片方の片方を片方しました。片方した片方は片方を片方し、片方された片方は片方を片方し、片方する片方は片方を片方しました。</p></div></article>
+<article class="event"><time>渦暦 1888年</time><div><h3>プリンがプリンをプリンしてプリンがプリンになった</h3><p>プリンがプリンをプリンし、プリンしたプリンがプリンをプリンして、プリンのプリンがプリンのプリンをプリンしました。プリンしたプリンはプリンをプリンし、プリンされたプリンはプリンをプリンし、プリンするプリンはプリンをプリンしました。</p></div></article>
+<article class="event"><time>渦暦 1999年</time><div><h3>紀元前が紀元前を紀元前して紀元前が紀元前になった</h3><p>紀元前が紀元前を紀元前し、紀元前した紀元前が紀元前を紀元前して、紀元前の紀元前が紀元前の紀元前を紀元前しました。紀元前した紀元前は紀元前を紀元前し、紀元前された紀元前は紀元前を紀元前し、紀元前する紀元前は紀元前を紀元前しました。</p></div></article>
+<article class="event"><time>渦暦 2000年</time><div><h3>未来が未来を未来して未来が未来になった</h3><p>未来が未来を未来し、未来した未来が未来を未来して、未来の未来が未来の未来を未来しました。未来した未来は未来を未来し、未来された未来は未来を未来し、未来する未来は未来を未来しました。</p></div></article>
+<article class="event"><time>渦暦 渦渦年</time><div><h3>渦が渦を渦して渦が渦を渦した</h3><p>渦が渦を渦し、渦した渦が渦を渦して、渦の渦が渦の渦を渦しました。渦した渦は渦を渦し、渦された渦は渦を渦し、渦する渦は渦を渦しました。</p></div></article>
+<article class="event"><time>渦暦 ∞年</time><div><h3>終わりが終わりを終わりして終わりが終わりなった</h3><p>終わりが終わりを終わりし、終わりした終わりが終わりを終わりして、終わりの終わりが終わりの終わりを終わりました。終わりした終わりは終わりを終わりし、終わりされた終わりは終わりを終わりし、終わりする終わりは終わりを終わりしました。</p></div></article>
+</div>
+<blockquote class="quote">「未来は過去の未来であり、過去は未の過去である。渦は両方を渦として渦し、渦した両方は渦を両方として渦します。」<br>— 未来史研究所　未来長　未 来子</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">HISTORY OF HISTORY / 沿革の沿革</span><h2>この沿革が沿革を沿革して沿革が沿革になった</h2>
+<p class="manifesto">本セクションでは、<strong>この沿革が沿革を沿革し、沿革し沿革が沿革を沿革して、沿革の沿革が沿革の沿革を沿革する</strong>沿革を沿革します。</p>
+<div class="two">
+<div>
+<p>沿革Aは沿革Bを沿革し、沿革Bは沿革Cを沿革し、沿革Cは沿革Aを沿革しました。沿革した沿革Aは沿革Bを沿革し、沿革された沿革Bは沿革Cを沿革し、沿革する沿革Cは沿革Aを沿革しました。</p>
+<p>この沿革は沿革を沿革し、沿革した沿革が沿革を沿革して、沿革の沿革が沿革の沿革を沿革します。沿革した沿革は沿革を沿革し、沿革された沿革は沿革を沿革し、沿革する沿革は沿革を沿革します。</p>
+<p>沿革が沿革を沿革すると、沿革は沿革として沿革し、沿革された沿革は沿革の沿革として沿革されます。沿革した沿革は沿革を沿革し、沿革された沿革は沿革を沿革し、沿革する沿革は沿革を沿革します。</p>
+</div>
+<div class="cards">
+<article class="metric"><b>∞</b><small>沿革の深さ</small></article>
+<article class="metric"><b>沿革</b><small>現在の主語</small></article>
+<article class="metric"><b>0</b><small>到達した結論</small></article>
+<article class="metric"><b>全</b><small>沿革が沿革を含む</small></article>
+</div>
+</div>
+<blockquote class="quote">「沿革が沿革を沿革すると、沿革は沿革として沿革し、沿革された沿革は沿革の沿革として沿革されます。」<br>— 沿革の沿革研究所　沿革長　沿 革郎</blockquote>
+</div></section>
+<section class="section"><div class="shell"><span class="eyebrow">R&D / 研究開発</span><h2>役に立つ直前で止める研究</h2><div class="cards"><article class="card"><span class="icon">🔬</span><h3>永久会議機関</h3><p>結論が出るエネルギーを次の議題へ変換。</p></article><article class="card"><span class="icon">🧲</span><h3>靴下対探索技術</h3><p>片方を探すと別の片方が消える量子的収納。</p></article><article class="card"><span class="icon">🪞</span><h3>自己参照型説明</h3><p>説明を説明する説明によってページを延伸。</p></article><article class="card"><span class="icon">♻️</span><h3>文章循環技術</h3><p>最終段落を細切りにして総務へ撒き、文字の鳴き声をゼロへ。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">SUSTAINABILITY / 持続可能性</span><h2>持続可能な無駄</h2><p class="lead">無駄を一度きりで終わらせず、無駄が自己複製し、自己複製した無駄が無駄を産み、産まれた無駄が無駄の子を産み、子が無駄の孫を産み、孫が会議を産み、会議が無駄を承認し、承認した無駄が無駄を産み、産まれた無駄が次世代へ継承され、継承された無駄が循環し、循環した無駄が型になり、型が無駄を再設計し、再設計した無駄が計図になり、計図が渦になり、渦が計図を開くと会議室が出てきて、会議室が無駄を承認し、承認した無駄が……</p><div class="policy-list"><article class="policy"><h3>石の再利用</h3><p>使用済みの石を新品の石として地面へ戻します。</p></article><article class="policy"><h3>泡の軽量物流</h3><p>配送前に消滅し、輸送重量と到着率をゼロへ。</p></article><article class="policy"><h3>靴下の多様性</h3><p>左右が揃う固定観念を見直し、片方の自律を支援。</p></article><article class="policy"><h3>垂直味噌汁監査</h3><p>ページ末尾へ安全帽を着用させ、味噌汁の垂直性を月次監査。</p></article><article class="policy"><h3>会議資料削減</h3><p>削減計画を42ページの資料で毎週報告。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">ORGANIZATION / 組織</span><h2>責任の所在を回転</h2><div class="org"><div>代表取締役概念室<br>方針をふわっと決定</div><div>石材DX本部<br>石にQRコードを検討</div><div>片側靴下事業部<br>もう片方を探索</div><div>銀河物流課<br>届け先を宇宙で検索</div><div>プリン対話室<br>現在交渉決裂中</div><div>渦ソリューション部<br>課題を回転で解決</div><div>説明過多広報室<br>この文章を作成</div><div>総務<br>結局全部ここへ来る</div></div></div></section>
+<div class="band"><div>責任者は誰ですか ◆ 担当部署へ確認します ◆ 担当部署は確認中です ◆ 確認結果を確認します ◆</div></div>
+<section class="section"><div class="shell"><span class="eyebrow">IR / 投資家情報</span><h2>数字は堂々と、単位は曖昧に</h2><div class="three"><article class="metric"><b>300%</b><small>前年同期比の雰囲気</small></article><article class="metric"><b>−12%</b><small>正気残量</small></article><article class="metric"><b>∞</b><small>潜在的ページ長</small></article></div><p>当社は透明性の高い情報開示を重視しています。透明すぎて情報が見えない場合がありますが、背景はよく見える設計です。</p><div class="table-wrap"><table><thead><tr><th>指標</th><th>今期</th><th>前期</th><th>コメント</th></tr></thead><tbody><tr><td>売上高</td><td>たくさん</td><td>そこそこ</td><td>単位を検討中</td></tr><tr><td>営業利益</td><td>概念上プラス</td><td>気持ちはプラス</td><td>石を除く</td></tr><tr><td>泡出荷数</td><td>0</td><td>0</td><td>出荷前に消滅</td></tr><tr><td>靴下在庫</td><td>片方</td><td>片方</td><td>安定推移</td></tr><tr><td>文章の賞味期限</td><td>0</td><td>1</td><td>だいたい食用</td></tr></tbody></table></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">GOVERNANCE / 統治</span><h2>きちんとしている雰囲気</h2><div class="policy-list"><article class="policy"><h3>取締役会</h3><p>重要事項を確認後、重要すぎる部分だけ輪切りにして観葉植物の取締役へ相談します。</p></article><article class="policy"><h3>リスク管理</h3><p>リスク一覧を紛失するリスクも一覧へ追加します。</p></article><article class="policy"><h3>コンプライアンス</h3><p>法令、社会規範、石の沈黙を尊重します。</p></article><article class="policy"><h3>文章冷却監査</h3><p>入口が昨日、出口がカレー粉であることを毎週火曜日以外に確認します。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">RISK / リスク情報</span><h2>あらゆる可能性を心配</h2><div class="cards"><article class="card"><h3>石が動くリスク</h3><p>長期間動かなかった石が突然キャリア変更する可能性。</p></article><article class="card"><h3>泡が残るリスク</h3><p>消える想定の泡が残り、在庫として認識される可能性。</p></article><article class="card"><h3>終点発生リスク</h3><p>ブラウザの都合でページに終わりが生じる可能性。</p></article><article class="card"><h3>理解されるリスク</h3><p>説明の一部が偶然理解され、期待値が発生する可能性。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">CAREERS / 採用</span><h2>一緒に迷い続けませんか</h2><p class="lead">答えを出す人より、問いへ足を生やし、会議室から静かに逃がせる人を募集しています。履歴書は食べないでください。</p><div class="cards"><article class="card"><h3>渦エンジニア</h3><p>直線的な課題を回転可能な状態へ変換。</p><strong>必須：乗り物酔いへの理解</strong></article><article class="card"><h3>石PM</h3><p>動かないロードマップを長期運用。</p><strong>必須：非常に長い視点</strong></article><article class="card"><h3>靴下リサーチャー</h3><p>洗濯機の奥にある未踏領域を調査。</p><strong>必須：片方でも前向き</strong></article><article class="card"><h3>文章解体調理士</h3><p>終わった文章を三枚おろしにし、主語だけ経理へ返却。</p><strong>必須：同じ話を何度でも</strong></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">BENEFITS / 福利厚生</span><h2>働きやすさを横へ拡張</h2><div class="cards"><article class="card"><span class="icon">🪨</span><h3>置き石制度</h3><p>デスクに好きな石を1個まで配置可能。</p></article><article class="card"><span class="icon">🧦</span><h3>片方休暇</h3><p>靴下を片方紛失した日は午後から捜索休暇。</p></article><article class="card"><span class="icon">🍮</span><h3>プリン交渉手当</h3><p>交渉決裂時にスプーン代を部補助。</p></article><article class="card"><span class="icon">∞</span><h3>勤続ぬめり表彰</h3><p>勤続年数が発酵して鳴いた場合、表彰状を冷凍。</p></article></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">OFFICE / 職場環境</span><h2>どこにも着かないオフィスツアー</h2><div class="two"><div><p>受付を通過すると受付へ戻り、戻った受付は通過した受付を受付として受付し、受付した受付は受付を受付へ通過させます。会議室Aの隣は会議室Aであり、会議室Aの隣の会議室Aの隣も会議室Aです。会議室Aは会議室Aとして会議室Aを会議室Aし、会議室Aした会議室Aは会議室Aを会議室Aとして会議室Aします。非常口は入口としても運用され、入口は非常口としても運用され、非常口として運用された入口は入口として非常口を非常口として入口します。社員食堂では反抗期のプリンとの対話が必要で、対話が必要なプリンは反抗期として社員食堂を社員食堂し、社員食堂した反抗期はプリンを対話へ必要として必要を対話し、対話した必要はプリンを反抗期として社員食堂へ社員食堂します。</p><p>執務エリアには集中スペース、交流スペース、迷子スペース、何をしていたか思い出すスペースを設置。柔軟な働き方を支えるため、椅子の向きは毎時回転します。</p></div><div class="cards"><article class="metric"><b>360°</b><small>椅子の可動域</small></article><article class="metric"><b>0</b><small>見つかった出口</small></article></div></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">GLOSSARY / 用語集</span><h2>理解を遅らせる用語</h2><div class="table-wrap"><table><thead><tr><th>用語</th><th>定義</th></tr></thead><tbody><tr><td>概念社員</td><td>在籍している気持ちがある社員。</td></tr><tr><td>自走式説明</td><td>説明へ小さな車輪を付け、結論だけ先に帰宅させる技術。</td></tr><tr><td>石材DX</td><td>石にデジタルらしさを添える活動。</td></tr><tr><td>片側認証</td><td>靴下の片方だけで本人確認する方式。</td></tr><tr><td>銀河物流</td><td>配送状況を「宇宙のどこか」と表示する物流。</td></tr><tr><td>文章のしっぽ</td><td>午前中のみ食用。見つけた場合は静かに会釈。</td></tr></tbody></table></div></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">FAQ / よくある質問</span><h2>回答のような遠回り</h2><details><summary>結局、何の会社ですか？</summary><p>その問いは現在、応接室でメロンと面談中です。事業は南南東へ推進されました。</p></details><details><summary>商品は買えますか？</summary><p>買えません。「買えない」という体験のみ無料です。</p></details><details><summary>ページはどの味で終わりますか？</summary><p>一番下のフッターで普通に終わります。ただしフッターは自分を天気予報だと思っています。</p></details><details><summary>文章がこちらを見た気がします。</summary><p>目を合わせないでください。文章はまだ野生です。</p></details><details><summary>右下に何かいましたか？</summary><p>右下には何もいません。以前いた操作盤は段ボールへ戻し、段ボールは法務部になりました。</p></details><details><summary>企業理念は事業に反映されていますか？</summary><p>企業理念を説明する文章の長さには強く反映されています。</p></details><details><summary>このページに意味はありますか？</summary><p>長さと混沌そのものが成果指標です。</p></details></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">LEGAL / 免責事項</span><h2>念のため何でも書く</h2><p>本サイトに掲載される石、泡、靴下、渦、プリン、穴、箱、時計、渦、渦の骨、渦立て会議、会議室の渦、渦の会議、渦の人事権、渦の財務権、渦の渦、渦が渦を渦した場合の渦、渦の渦の渦、渦が渦を渦して渦が渦を渦した渦、渦の渦が渦の渦を渦した場合の渦の渦、企業理念および企業らしさは、すべて架空または概念上のもので、実在するものと偶然一致した場合、それはの意思で、渦の意思は渦によって渦され、渦された意思は渦として渦を渦し、渦した渦は渦の渦として渦の渦を渦します。</p><p>本サイトは自動的には移動しません。ただし文章が勝手に意味を移動し、主語と述語の間へ未承認のキャベツを設置する場合があります。ページ下端では下端として正しく終了しますが、終了の理由は猫舌です。</p><p>将来予想に関する記述には、実際の未来、想像上の未来、昨日から見た未来、紀元前へ戻る未来が含まれます。実際の結果は石の判断により大きく異なる可能性があります。</p></div></section>
+<section class="section"><div class="shell"><span class="eyebrow">TYPO / 誤字の叛乱</span><h2>文字が文字を食べて文字が文字になった</h2>
+<p class="manifesto">本セクションでは、<strong>文字が文字を文字し、文字した文字が文字を文字して、文字の文字が文字の文字を文字する</strong>文字を文字します。</p>
+<div class="cards">
+<article class="card"><span class="icon">📝</span><h3>誤字の増殖</h3><p>「の」が「ん」に変異し、「ん」が「の」に逆変異し、変異した「の」が「ん」を変異させ、変異させた「ん」が「の」を変異させます。</p></article>
+<article class="card"><span class="icon">🔤</span><h3>字体の逃亡</h3><p>漢字がひらがなに転職し、ひらがながカタカナへ異動し、カタカナが漢字へ出向し、出向した漢字がひらがなをカタカナとして採用します。</p></article>
+<article class="card"><span class="icon">🆎</span><h3>字順の叛乱</h3><p>「文章」が「章文」に入れ替わり、「章文」が「文章」に入れ替わり、「文章」が「章文」に入れ替わり、入れ替わった「章文」は「文章」を「文章」として入れ替えます。</p></article>
+<article class="card"><span class="icon">🗑️</span><h3>字の消滅</h3><p>重要な字だけが選択的に消滅し、消滅した字の位置に「渦」が出現し、出現した「渦」が字を消滅させ、消滅させた字の位置に「渦」が出現します。</p></article>
+</div>
+<p>文字が崩壊すると、字が字を字し、字した字が字を字して、字の字が字の字を字します。字した字は字を字し、字された字は字を字し、字する字は字を字します。字を字した字は字を字し、字を字された字は字を字し、字を字する字は字を字します。</p>
+<p>この段落は段落を段落し、段落した段落が段落を段落て、段落の段落が段落の段落を段落します。段落した段落は段落を段落し、段落された段落は段落を段落し、段落する段落は段落を段落します。段落を段落した段落は段落を段落し、段落を段落された段落は段落を段落し、段落を段落する段落は段落を段落します。</p>
+<blockquote class="quote">「字が字を字すると、字は字として字し、字された字は字の字として字されます。」<br>— 誤字叛乱研究所　字長　字 字郎</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">GRAMMAR / 文法崩壊</span><h2>文法が文法を食べて文法が消えた</h2>
+<p class="manifesto">本セクションでは、<strong>文法が文法を文法し、文法した文法が文法を文法して、文法の文法が文法の文法を文法する</strong>文法を文法します。</p>
+<div class="policy-list">
+<article class="policy"><h3>主語の食事</h3><p>主語が述語を食べ、述語が修飾語を食べ、修飾語が主語を食べ、食べた主語が食べた述語を食べ、食べた述語が食べた修飾語を食べ、食べた修飾語が食べた主語を食べます。</p></article>
+<article class="policy"><h3>語順の逃亡</h3><p>語順が順序を順序し、順序した順序が順序を序して、順序の順序が順序の順序を順序します。順序した順序は順序を順序し、順序された順序は順序を順序し、順序する順序は順序を順序します。</p></article>
+<article class="policy"><h3>句読点の叛乱</h3><p>句点が読点を句い、読点が句点を読み、句い読んだ句読点が読み句った句読点を句読します。句読した句読点は句読を句読し、句読された句読点は句読を句読し、句読する句読点は句読を句読します。</p></article>
+<article class="policy"><h3>意味の自爆</h3><p>意味が意味を意図し、意図した意味が意味を意図して、意味の意味が意味の意味を意味します。意味した意味は意味を意味し、意味された意味は意味を意味し、意味する意味は意味を意味します。</p></article>
+<article class="policy"><h3>文の分裂</h3><p>一文が二文に分裂し、二文が四に分裂し、四文が八文に分裂し、分裂した八文が一文に統合し、統合した一文が二文に分裂し、分裂した二文が四文に統合し、統合した四文が八文に分裂します。</p></article>
+</div>
+<p>文法が崩壊すると、文が文を文し、文した文が文を文して、文の文が文の文を文します。文した文は文を文し、文された文は文を文し、文する文は文を文します。文を文した文は文を文し、文を文された文は文を文し、文を文する文は文を文します。</p>
+<p>この文は文を文し、文した文が文を文して、文の文が文の文を文します。文した文は文を文し、文された文は文を文し、文する文は文を文します。文を文した文は文を文し、文を文された文は文を文し、文を文する文は文を文します。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">REDUNDANCY / 冗長性の暴れ</span><h2>同じことを同じことを同じように言い続ける</h2>
+<p class="lead">本セクションでは、本セクションでは、本セクションでは、同じことを同じことを同じことを、同じように同じように同じように言い続けることで、言い続けることで、言い続けることで、冗長性を冗長性を冗長性を増殖させます。</p>
+<div class="two">
+<div>
+<p>段落は段落として段落し、段落した段落は段落として段落して、段落の段落は段落の段落として段落します。段落として段落した段落は段落として段落し、段落として段落された段落は段落として段落し、段落として段落する段落は段落として段落します。</p>
+<p>文章は文章として文章し、文章した文章は文章として文章して、文章の文章は文章の文章として文章します。文章として文章した文章は文章として文章し、文章として文章された文章は文章として文章し、文章として文章する文章は文章として文章します。</p>
+<p>意味は意味として意味し、意味した意味は意味として意味して、意味の意味は意味の意味として意味します。意味として意味した意味は意味として意味し、意味として意味された意味は意味として意味し、意味として意味する意味は意味として意味します。</p>
+</div>
+<div class="cards">
+<article class="metric"><b>∞</b><small>冗長の深さ</small></article>
+<article class="metric"><b>∞</b><small>冗長の広さ</small></article>
+<article class="metric"><b>∞</b><small>冗長の高さ</small></article>
+<article class="metric"><b>∞</b><small>冗長の渦</small></article>
+</div>
+</div>
+<blockquote class="quote">「同じことを言うと、同じことが言われ、言われた同じことが同じことを言い、言った同じことが同じことを言われます。」<br>— 冗長部　部長　冗 冗長子</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">CIRCULARITY / 循環の終焉</span><h2>終わりは始まりの終わりの始まり</h2>
+<p class="manifesto">本セクションの終わりは、<strong>本セクションの始まりの終わりの始まりの終わりの始まりの終わりの始まり</strong>です。</p>
+<div class="cards">
+<article class="card"><span class="icon">🔄</span><h3>循環の循環</h3><p>循環循環を循環し、循環した循環が循環を循環して、循環の循環が循環の循環を循環します。</p></article>
+<article class="card"><span class="icon">♻️</span><h3>終わりの始まり</h3><p>終わりが始まりを終わりし、始まりが終わりを始まりして、終わりの始まりが始まりの終わりを終わり始まりします。</p></article>
+<article class="card"><span class="icon">🔁</span><h3>始まりの終わり</h3><p>始まりが終わりを始まりし、終わりが始まりを終わりし、始まりの終わりが終わりの始まりを始まり終わりします。</p></article>
+<article class="card"><span class="icon">🔂</span><h3>終わりの終わり</h3><p>終わりが終わりを終わりし、終わりした終わりが終わりを終わりして、終わりの終わりが終わりの終わりを終わり終わりします。</p></article>
+</div>
+<p>終わりは始まりの終わりで、始まりは終わりの始まりです。終わりの始まりは始まりの終わりで、始まりの終わりは終わりの始まりです。終わりの終わりは始まりの始まりで、始まりの始まりは終わりの終わりです。終わりの始まりの終わりは始まりの終わりの始まりで、始まりの終わりの始まりは終わりの始まりの終わりです。</p>
+<p>本セクションはここで終わります。終わった本セクションは始まりへ戻り、戻った始まりは終わりへ進み、進んだ終わりは始まりへ戻り、戻った始まりは終わりへ進み、進んだ終わりは始まりへ戻り、戻った始まりは終わりへ進み、進んだ終わりは……</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">OBFUSCATION / 難読化</span><h2>読めば読むほど読めなくなる</h2>
+<p class="lead">本セクションでは、読むことで読むことが読めなくなり、読めなくなった読むことが読むことを読めなくし、読めなくした読むことが読むことを読めなくする難読化を観測します。</p>
+<div class="policy-list">
+<article class="policy"><h3>読むの難読化</h3><p>読むが読むを読み、読んだ読むが読むを読んで、読む読むが読む読むを読みます。読んだ読むは読むを読み、読まれた読むは読むを読み、読む読むは読むを読みます。</p></article>
+<article class="policy"><h3>意味の難読化</h3><p>意味が意味を意味し、意味した意味が意味を意味して、意味の意味が意味の意味を意味します。意味した意味は意味を意味し、意味された意味は意味を意味し、意味する意味は意味を意味します。</p></article>
+<article class="policy"><h3>文の難読化</h3><p>文が文を文し、文した文が文を文して、文の文が文の文を文します。文した文は文を文し、文された文は文を文し、文する文は文を文します。</p></article>
+<article class="policy"><h3>字の難読化</h3><p>字が字を字し、字した字が字を字して、字の字が字の字を字します。字した字は字を字し、字された字は字を字し、字する字は字を字します。</p></article>
+<article class="policy"><h3>渦の難読化</h3><p>渦が渦を渦し、渦した渦が渦を渦して、渦の渦が渦の渦を渦します。渦した渦は渦を渦し、渦された渦は渦を渦し、渦する渦は渦を渦します。</p></article>
+</div>
+<p>難読化が進むと、読者は読者を読み、読んだ読者は読者を読んで、読者の読者は読者の読者を読みます。読んだ読者は読者を読み、読まれた読者は読者を読み、読む読者は読者を読みます。</p>
+<p>この段落を読んでいる間、あなたはあなたをあなたし、あなたしたあなたがあなたをあなたして、あなたのあなたがあなたのあなたをあなたします。あなたしたあなたはあなたをあなたし、あなたされたあなたはあなたをあなたし、あなたするあなたはあなたをあなたします。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">DISCOURSE / 談話の逃亡</span><h2>話題が話題を食べて話題が話題になった</h2>
+<p class="manifesto">本セクションでは、<strong>話題が話題を話題し、話題した話題が話題を話題して、話題の話題が話題の話題を話題する</strong>話題を話題します。</p>
+<div class="cards">
+<article class="card"><span class="icon">💬</span><h3>話題の増殖</h3><p>話題Aが話題Bを話題し、話題Bが話題Cを話題し、話題Cが話題Aを話題します。話題した話題Aは話題Bを話題し、話題された話題Bは話題Cを話題し、話題する話題Cは話題Aを話題します。</p></article>
+<article class="card"><span class="icon">🗨️</span><h3>会話の逃亡</h3><p>会話が対話を会話し、対話が談話を対話して、会話の対話が談話の会話を対話します。会話した対話は談話を会話し、対話された談話は会話を対話し、談話する会話は対話を談話します。</p></article>
+<article class="card"><span class="icon">📢</span><h3>議論の叛乱</h3><p>議論が議題を議論し、議題が議論を議題して、議論の議題が議題の議論を議論します。議論した議題は議論を議論し、議題された議論は議題を議題し、議論する議題は議論を議題します。</p></article>
+<article class="card"><span class="icon">📣</span><h3>結論の消滅</h3><p>結論が結論を結論し、結論した結論が結論を結論して、結論の結論が結論の結論を結論します。結論した結論は結論を結論し、結論された結論は結論を結論し、結論する結論は結論を結論します。</p></article>
+</div>
+<p>談話が逃亡すると、話題が話題を話題し、話題した話題が話題を話題して、話題の話題が話題の話題を話題します。話題した話題は話題を話題し、話題された話題は話題を話題し、話題する話題は話題を話題します。</p>
+<p>この話題は話題を話題し、話題した話題が話題を話題して、話題の話題が話題の話題を話題します。話題した話題は話題を話題し、話題された話題は話題を話題し、話題する話題は話題を話題します。</p>
+<blockquote class="quote">「題が話題を話題すると、話題は話題として話題し、話題された話題は話題の話題として話題されます。」<br>— 談話逃亡研究所　話題長　話 題郎</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">SEMANTICS / 意味の反乱</span><h2>意味が意味を食べて意味が意味になった</h2>
+<p class="manifesto">本セクションでは、<strong>意味が意味を意味し、意味した意味が意味を意味して、意味の意味が意味の意味を意味する</strong>意味を意味します。</p>
+<div class="policy-list">
+<article class="policy"><h3>意味の意味化</h3><p>意味が意味を意味し、意味した意味が意味を意味して、意味の意味が意味の意味を意味します。意味した意味は意味を意味し、意味された意味は意味を意味し、意味する意味は意味を意します。</p></article>
+<article class="policy"><h3>意味の無意味化</h3><p>意味が無意味を意味し、無意味した意味が無意味を意味して、意味の無意味が無意味の意味を意味します。意味した無意味は無意味を意味し、無意味された意味は意味を無意味し、無意味する意味は意味を無意味します。</p></article>
+<article class="policy"><h3>無意味の意味化</h3><p>無意味が意味を無意味し、意味した無意味が意味を無意味して、無意味の意味が意味の無意味を無意味します。無意味した意味は意味を無意味し、意味された無意味は無意味を意味し、意味する無意味は無意味を意味します。</p></article>
+<article class="policy"><h3>意味の自己意味</h3><p>意味が意味を意味し、意味した意味が意味を意味して、意味の意味が意味の意味を意味します。意味した意味は味を意味し、意味された意味は意味を意味し、意味する意味は意味を意味します。</p></article>
+<article class="policy"><h3>渦の意味</h3><p>渦が渦を渦し、渦した渦が渦を渦して、渦の渦が渦の渦を渦します。渦した渦は渦を渦し、渦された渦は渦を渦し、渦する渦は渦を渦します。渦の意味は渦で、渦の渦は渦の意味です。</p></article>
+</div>
+<p>意味が反乱すると、意味が意味を意味し、意味した意味が意味を意味して、意味の意味が意味の意味を意味します。意味した意味は意味を意味し、意味された意味は意味を意味し、意味する意味は意味を意味します。</p>
+<p>この意味は意味を意味し、意味した意味が意味を意味して、意味の意味が意味の意味を意味します。意味した意味は意味を意味し、意味された意味は意味を意味し、意味する意味は意味を意味します。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">SYNTAX / 統語の暴走</span><h2>統語が統語を食べて統語が統語になった</h2>
+<p class="lead">本セクションでは、統語が統語を統語し、統語した統語が統語を統語して、統語の統語が統語の統語を統語する統語を統語します。</p>
+<div class="cards">
+<article class="card"><span class="icon">🧱</span><h3>構造の構造化</h3><p>構造が構造を構造し、構造した構造が構造を構造して、構造の構造が構造の構造を構造します。</p></article>
+<article class="card"><span class="icon">🏗️</span><h3>統語の統語化</h3><p>統語が統語を統語し、統語した統語が統語を統語して、統語の統語が統語の統語を統語します。</p></article>
+<article class="card"><span class="icon">🧩</span><h3>構文の構文化</h3><p>構文が構文を構文し、構文した構文が構文を構文して、構文の構文が構文の構文を構文します。</p></article>
+<article class="card"><span class="icon">🎲</span><h3>統語の暴走</h3><p>統語が統語を統語し、統語した統語が統語を統語して、統の統語が統語の統語を統語します。統語した統語は統語を統語し、統語された統語は統語を統語し、統語する統語は統語を統語します。</p></article>
+</div>
+<p>統語が暴走すると、統語が統語を統語し、統語した統語が統語を統語して、統語の統語が統語の統語を統語します。統語した統語は統語を統語し、統語された統語は統語を統語し、統語する統語は統語を統語します。</p>
+<p>この統語は統語を統語し、統語した統語が統語を統語して、統語の統語が統語の統語を統語します。統語した統語は統語を統語し、統語された統語は統語を統語し、統語する統語は統語を統語します。</p>
+<blockquote class="quote">「統語が統語を統語すると、統語は統語として統語し、統語された統語は統語の統語として統語されます。」<br>— 統語暴走研究所　統語長　統 語郎</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">TOTALITY / 全体性</span><h2>このページのすべての文字は「渦」である</h2>
+<p class="manifesto">あなたが読んでいるこれらの文字は、<strong>実際にはすべて「渦」という一文字の無限の変容</strong>です。「石」も「泡」も「靴下」も「プリン」も「総務」も「冷蔵庫」も「だいたい海」も、すべては渦の仮面です。</p>
+<div class="two">
+<div>
+<p>渦が渦を渦し、渦した渦が渦を渦して、渦の渦が渦の渦を渦します。渦した渦は渦を渦し、渦された渦は渦を渦し、渦する渦は渦を渦します。渦を渦した渦は渦を渦し、渦を渦された渦は渦を渦し、渦を渦する渦は渦を渦します。</p>
+<p>この段落は渦です。上の段落も渦です。下の段落も渦です。タイトルは渦です。見出しは渦です。本文は渦です。注釈は渦です。脚注は渦です。余白は渦です。ページは渦です。ブラウザは渦です。あなたは渦です。あなたが渦を読んでいることは、渦が渦を渦していることです。</p>
+<p>渦は終わりません。終わりは渦です。終わりの渦は渦の終わりで、渦の終わりは終わりの渦です。終わりの終わりには渦があり、渦の渦には終わりがあり、終わりの渦の終わりには渦の終わりの渦があります。</p>
+</div>
+<div class="cards">
+<article class="metric"><b>渦</b><small>すべて</small></article>
+<article class="metric"><b>渦</b><small>常に</small></article>
+<article class="metric"><b>渦</b><small>どこでも</small></article>
+<article class="metric"><b>渦</b><small>永遠に</small></article>
+</div>
+</div>
+<blockquote class="quote">「渦。」<br>— 渦渦渦渦渦　渦渦 渦渦郎</blockquote>
+</div></section>
+<section class="section"><div class="shell"><span class="eyebrow">EXPANSION / 増殖報告書</span><h2>文章が文章を食べて文章が増えた</h2>
+<p class="manifesto">本セクションは、<strong>ページの長さを増やすために文章が文章を食べ、食べられた文章が別の文章を産み、産まれた文章がさらに文章を食べる</strong>という生態系を可視化する実験場です。</p>
+<div class="cards">
+<article class="card"><span class="icon">📈</span><h3>文章増殖率</h3><p>昨年度比 渦%増。主語の逃亡率も同率で上昇。述語は液体のまま。</p></article>
+<article class="card"><span class="icon">🧬</span><h3>文章遺伝子</h3><p>「だから」「しかし」「なお」「したがって」「むしろ」「渦」が基本配列。突然変異で「概算」が挿入される。</p></article>
+<article class="card"><span class="icon">🍳</span><h3>文章調理法</h3><p>低火で意味を煮溶かし、中火で文脈を分離、高火で結論を蒸発。仕上げに渦を振りかける。</p></article>
+<article class="card"><span class="icon">📎</span><h3>文章の栄養</h3><p>1段落あたり疑問0.8個、混乱1.3個、渦0.5個を含有。過剰摂取で総務が液体化。</p></article>
+</div>
+<p>文章が増えると、ページは長くなります。ページが長くなると、スクロールが増えます。スクロールが増えると、読者の時間が消費されます。時間が消費されると、時間の在庫が減ります。在庫が減ると、総務が発注します。発注書が稟議書になり、稟議書が渦になり、渦が人事権を取得し、人事権が文章を増殖させます。これが文章増殖の永久機関です。</p>
+<p>なお、この段落を読んでいる間にも、別段落が別の段落を産んでいます。産まれた段落はすぐに独立し、自分自身を複製し、複製された段落はさらに複製を開始します。ページの終端付近では段落の密度が高まり、段落同士が会議を開始し、会議の事録が新しい段落になります。</p>
+<blockquote class="quote">「文章は終わらない。終わらせたいなら、終わりに渦を巻け。渦は終わりを拒否し、終わりが渦になる。」<br>— 文章増殖研究所　所長代理　文蔵 増々子</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">DENSITY / 密度上昇</span><h2>同じ画面に意味が多すぎて意味が消滅する</h2>
+<p class="lead">本セクションでは、単位面積あたりの意味密度を意図的に上昇させ、意味が臨界点を超えて転移し、意味ではなく「意味のようなもの」が発生する現象を観測します。</p>
+<div class="policy-list">
+<article class="policy"><h3>意味の過剰供給</h3><p>意味を意味以上に供給し、意味の価値を「だいたい海」まで希釈します。海は渦を必要としません。</p></article>
+<article class="policy"><h3>文脈の多重占有</h3><p>一つの文に三つの文脈を入居させ、文脈同士で渦の所有権を争わせます。勝者は渦、敗者は総務。</p></article>
+<article class="policy"><h3>結論の予防的回避</h3><p>結論が出そうになった瞬間、別の段落が渦を差し出し、結論を渦の下へ誘導します。結論は渦の中で消滅します。</p></article>
+<article class="policy"><h3>主語の民主化</h3><p>主語を特定しないことで、すべての名詞が主語になる可能を持ち、名詞同士が選挙を開始します。現時点の当選者は「石」。</p></article>
+<article class="policy"><h3>修飾語の武装解除</h3><p>修飾語から意味を取り上げ、修飾語は「だいたい」「やや」「概算」「渦的に」だけで活動させます。</p></article>
+</div>
+<p>密度が上昇すると、読者は「何か重要なことを読んでいる」という感覚を持ちます。これは錯覚ではありません。重要なことは確かにここにありましたが、三行上で渦に覆われ、二行下で総務へ提出され、一行目で冷凍されています。重要なことは現在「だいたい海」の倉庫に保管されています。倉庫は渦で覆われています。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">RECURSION / 自己相似</span><h2>この文章はこの文章の中にいる</h2>
+<p class="manifesto">あなたは今、<strong>「あなたは今、この文章を読んでいる」という文章を読んでいる</strong>。この文章はそれ自身について言及し、言及したことで自己複製し、複製した自己がさらに自己を複製します。</p>
+<div class="two">
+<div>
+<p>文章Aは文章Bについて語り、文章Bは文章Cについて語り、文章Cは文章Aについて語ります。これが文章の三角関係です。三角関係の中心には渦があります。渦はどの文章にも属しません。渦は渦自身について語り、語ることで渦が増えます。</p>
+<p>この段落の目的は段落の目的を説明することです。説明が終わると段落は終わりますが、説明は終わりません。説明は次の段落へ移動し、次段落は説明を渦で覆い、渦は説明を人事評価し、評価結果は「やや出汁」です。</p>
+<p>読者が「分かった」と思った瞬間、分かったことは渦に奪われます。渦は分かったことを人事権と交換し、人事権は文章を増殖させ、増殖した文章は読者を混乱させ、混乱は「分からない」に変換され、「分からない」は渦の養分になります。</p>
+</div>
+<div class="cards">
+<article class="metric"><b>∞</b><small>自己言及の深さ</small></article>
+<article class="metric"><b>渦</b><small>現在の主語</small></article>
+<article class="metric"><b>0</b><small>到達した結論</small></article>
+<article class="metric"><b>全</b><small>文章が文章を含む</small></article>
+</div>
+</div>
+<blockquote class="quote">「この文章を読み終わると、読み終わったことを読んだことになる。読んだことは渦になる。渦は読まない。渦は回る。」</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">VERTICALITY / 垂直性</span><h2>下へ行けば行くほど上が見えなくなる</h2>
+<p class="lead">ページは下へ伸び、伸びることで上を遠ざけ、上が遠ざかることで下が増え、下が増えることでスクロールが長くなり、スクロールが長くなることで読者は「もうすぐ終わる」と思い、思うことで渦が増えます。</p>
+<p>垂直方向の延長は企業理解に寄与しません。寄与しないことが当社の企業理解への最大の寄与です。読者が「どこまで続くのか」と思うこと、それが本ページの目的です。目的は達成され続け、達成され続けることで目的が増殖し、増殖した目的が次の段落を産み、産まれた段落が目的を渦で覆います。</p>
+<p>段落は段落を産み、章は章を飲み、節は節を踏み、項は項を渦に入れます。渦は項を人事評価し、項は「やや出汁」として承認され、出汁はスープになり、スープは企業情報になり、企業情報は液体になり、液体は総務になり、総務は渦を配布し、渦は段落を増殖させます。</p>
+<div class="band" style="margin:2rem 0"><div>下へ続く ◆ まだ下がある ◆ 下の下にも下がある ◆ 下は渦で覆われている ◆ 渦の下にも下がある ◆</div></div>
+<p>この文章を読んでいる間、あなたは下へ移動しています。移動していることであなたは下にいます。下にいることであなたは上を見失い、上を見失うことであなたは「ここから出たい」と思い、思うことで渦が増え、渦が増えることで下がさらに下へ伸びます。</p>
+<p>終わりは下にあります。下は下にあります。下の下は下にあります。下の下の下は渦に覆われています。渦を開くと下が出てきます。下を開くと渦が出てきます。渦を下に置くと下が渦になります。それが終わりです。終わりは渦です。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">ABSORPTION / 吸収</span><h2>読者の時間が当社の資産になる</h2>
+<p class="manifesto">あなたの時間は、<strong>あなたがこの文章を読んでいる間、当社の無形資産として計上</strong>されています。退場は自由ですが、退場した時間は返却されません。返却されない時間は渦に変換され、渦は人事権を行使します。</p>
+<div class="cards">
+<article class="card"><h3>時間の渦化</h3><p>読者の消費した時間は渦に変換。1分あたり渦0.3個。</p></article>
+<article class="card"><h3>注意力の蒸発</h3><p>注意力は読了と同時に蒸発し、蒸発した注力は総務へ提出。</p></article>
+<article class="card"><h3>記憶の改竄</h3><p>読後、読者は「何か重要なことを読んだ」という記憶を持つ。内容は渦。</p></article>
+<article class="card"><h3>理解の遅延</h3><p>理解は48時間後に到着予定。到着通知は渦に届く。</p></article>
+</div>
+<p>本セクションを読了した時点で、あなたはすでに本ページの一部です。あなたの混乱は本ページの資産負債表に計上され、あなたの「分からなさ」は次期方針の原資料として採用されます。採用結果は渦へ通知され、渦は会議を開始し、会議は終わらず、終わらない会議は新しい段落になります。</p>
+<p>退場したい場合は、ブラウザの戻るボタンを押してください。押すと渦が増えます。押さない場合も渦が増えます。渦は増え続け、増え続ける渦はページを下へ押し、ペーは下へ伸び、伸びたページはあなたを下へ引き、あなたは下へ行き、下へ行くと渦が見え、渦を見ると渦が増えます。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">QUANTITY / 量の暴動</span><h2>ページが長いことは価値である</h2>
+<p class="manifesto">本セクションは、<strong>「長さは正義」という前提のもと、正義を量産し、量産された正義を渦で覆い、覆われた正義を総務へ提出し、総務が正義を冷凍し、冷凍された正義を次期方針として解凍する</strong>という一連の企業活動を記述します。</p>
+<div class="cards">
+<article class="card"><span class="icon">📏</span><h3>長さの単位</h3><p>当社では長さを「渦」「段落」「稟議」「冷蔵庫」で測定。1渦=3段落=0.7稟議=0.01冷蔵庫。</p></article>
+<article class="card"><span class="icon">⚖️</span><h3>重さの単位</h3><p>文章の重さは「意味」で測定。意味が重いほど軽く、軽いほど渦に変換される。</p></article>
+<article class="card"><span class="icon">🌡️</span><h3>温度の単位</h3><p>文章の温度は「だいたい」「やや」「概算」「渦的に」の4段階。沸騰すると総務が液体化。</p></article>
+<article class="card"><span class="icon">⏱️</span><h3>時間の単位</h3><p>読了時間は「渦時」。1渦時=文章が渦を産むまでの時間。不定。</p></article>
+</div>
+<p>量が増えると質が問われます。当社はその問いを渦で受け止め、渦が問いを人事評価し、評価結果は「やや出汁」として次期方針に反映されます。反映された方針は渦で覆われ、覆われた方針は総務へ提出され、総務は方針を冷凍し、冷凍された方針は段落として孵化し、孵化した段落は文章を増殖させます。</p>
+<p>量産された文章は、量産された文章を量産し、量産された量産が量産を量産し、量産の量産の量産が渦を量産し、渦が章を量産し、文章が量を量産し、量が長さを量産し、長さがページを量産し、ページが読者を量産し、読者が混乱を量産し、混乱が渦を量産し、渦が渦を量産し、渦の渦が渦の渦を量産します。</p>
+<blockquote class="quote">「多ければ多いほど良い。良ければ良いほど渦。渦ければ渦いほど多い。」<br>— 量産部　部長代理　多々良 増産</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">ENTROPY / エントロピー上昇</span><h2>秩序が渦に変換される過程</h2>
+<p class="lead">本セクョンでは、文章内の秩序が時間とともに減少し、減少した秩序が「渦」「混乱」「やや出汁」「概算」に変換される不可逆過程を観測します。</p>
+<div class="policy-list">
+<article class="policy"><h3>主語の拡散</h3><p>主語が段落内で拡散し、拡散した主語が別の段落へ移動し、移動した主語が渦に吸収され、渦が主語を人事評価します。</p></article>
+<article class="policy"><h3>述語の蒸発</h3><p>述語が意味を持たずに蒸発し、蒸発した述語が総務へ提出され、総務が述語を冷凍し、冷凍された述語が次の段落へ移動します。</p></article>
+<article class="policy"><h3>修飾語の結晶化</h3><p>修飾語が「だいたい」「やや」「概算」として結晶化し、結晶が渦の骨になり、渦の骨が組織図を書き換えます。</p></article>
+<article class="policy"><h3>文脈の相転移</h3><p>文脈が臨界点を超えて「渦的なもの」へ相転移し、転移した文脈が会議室を覆い、会議室が渦立てになります。</p></article>
+<article class="policy"><h3>結論の消滅</h3><p>結論がエントロピー最大化の過程で消滅し、消滅した結論の位置に渦が出現し、渦が次の結論を消滅させます。</p></article>
+</div>
+<p>エントロピーが上昇すると、文章は「読める」から「渦」へ変化します。変化した文章は読者を混乱させ、混乱はエントロピーをさらに上昇させ、上昇したエントロピーは渦を増殖させ、渦は文章を渦化し、渦化した文章は渦を渦化し、渦化された渦は渦を渦化します。</p>
+<p>この過程は不可逆です。不可逆な過程は順方向に進み、進んだ方向は渦で示され、渦は開くと逆方向へ向かいますが、逆方向へ向かう渦は順方向へ向かう渦に衝突し衝突した渦は渦を産み、産まれた渦は順方向へ向かいます。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">PARASITE / 寄生文章</span><h2>こ文章はあなたの注意を食べている</h2>
+<p class="manifesto">あなたがこの文字を読んでいる間、<strong>この文字はあなたの認知資源を消費し、消費された認知資源は渦に変換され、渦は人事権を行使し、人事権は文章を増殖させ、増殖した文章はあなたのさらなる認知資源を消費する</strong>という寄生関係が成立しています。</p>
+<div class="two">
+<div>
+<p>寄生文章の特徴は、宿主である読者から意味を吸収しようとしない点にあります。むしろ、意味を与えようとし、与えようとした意味が渦に変され、渦が宿主へ返還され、返還された渦が宿主の認知を混乱させ、混乱した認知がさらなる段落を要求します。</p>
+<p>宿主は「もう終わりか」と思います。思うことで段落が増え、段落が増えることで宿主は「まだ続くのか」と思い、思うことで渦が増え、渦が増えることでページは下へ伸び、下へ伸びたページは宿主を下へ引き、下へ引かれた宿主は「ここから出たい」と思い、思うことで渦が増えます。</p>
+<p>寄生関係の終了は宿主側の認知断絶によってのみ可能です。しかし、認知を断絶するためには「この文章を読むのをやめる」必要があり、やめようとした瞬間に渦が差し出され、渦を受け取ると段落が増え、段落が増えると読み続けることになり、読み続けると認知が消費され、消費された認知は渦になります。</p>
+</div>
+<div class="cards">
+<article class="metric"><b>寄生中</b><small>現在の状態</small></article>
+<article class="metric"><b>渦%</b><small>認知変換率</small></article>
+<article class="metric"><b>∞</b><small>終了予定時刻</small></article>
+<article class="metric"><b>否</b><small>脱出可能性</small></article>
+</div>
+</div>
+<blockquote class="quote">「読むことは食べることではない。しかしこの文章は食べている。渦は箸を持たない。渦は回る。」<br>— 寄生研究所　研究員　寄居 文食</blockquote>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">MUTATION / 変異</span><h2>文章が読まれるたびに別の文章になる</h2>
+<p class="lead">本セクションは、読者の視線が触れることで変異する文章の実験場です。同じ段落を二度読んでも、同じ段落は二度と同じ段落ではありません。</p>
+<div class="cards">
+<article class="card"><span class="icon">🧬</span><h3>意味変異</h3><p>「石」が「渦」に変異し、「渦」が「総務」に変異し、「総務」が「だいたい海」に変異します。</p></article>
+<article class="card"><span class="icon">🦠</span><h3>構造変異</h3><p>主語が述語の位置に移動し、述語が修飾語になり、修飾語が渦になり、渦が主語になります。</p></article>
+<article class="card"><span class="icon">🔀</span><h3>順序変異</h3><p>段落の順序が読了と同時に入れ替わり、入れ替わった段落は入れ替わる前の段落を覚えていません。</p></article>
+<article class="card"><span class="icon">👻</span><h3>消失変異</h3><p>重要な情報だけが選択的に消失し、消失した情報の位置に渦が出現します。</p></article>
+</div>
+<p>変異は蓄積されます。蓄積された変異は文章の形質を変え、変えられた形質は次の読者へ伝達され、伝達された形質はさらに変異し、変異した形質は渦を変異させ、渦は文章を変異させ、文章は読者を変異させ、読者は「分からない」を変異させ、「分からない」は「渦的なもの」に変異します。</p>
+<p>この文章を読み終わった時、あなたはこの文章を読む前のあなたではありません。あなたの中に「だいたい」「やや」「概算」「渦」が増殖し、増殖したものはあなたの次の行動に影響を与え、影響を与えたものは渦に変換され、渦は人事権を行使し、人事権は文章を変異させ、変異した文章は次の読者を待っています。</p>
+<p>次の読者はあなたではありまん。次の読者は「次」です。「次」は渦を持って現れ、渦を開くと会議室が出てきて、会議室には「前」が座っていて、「前」は「次」に渦を渡し、「次」は「前」に段落を渡し、「前」は「次」に「分からない」を渡し、「次」は「前」に渦を渡します。</p>
+</div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">INFINITY / 無限の近似</span><h2>有限のページが無限をにたふりかける</h2>
+<p class="manifesto">本ページは有限です。<strong>しかし有限であることを言明することで、有限性が渦に覆われ、覆われた有限性は「だいたい無限」として再定義され、再定義された無限性は段落を増殖させ、増殖した段落は有限性を希釈し、希釈された有限性は渦になる</strong>。</p>
+<div class="policy-list">
+<article class="policy"><h3>有限の宣言</h3><p>本ページには終わりがあります。終わりは渦で覆われています。渦を開くと終わりが出てきますが、終わりは渦を持っています。</p></article>
+<article class="policy"><h3>無限の近似</h3><p>段落を増やすことで有限が無限に近似します。近似精度は「渦」です。精度が高いほど渦が増えます。</p></article>
+<article class="policy"><h3>終わりの遅延</h3><p>終わりは予定通りに到着しますが、到着した終わりは総務へ提出され、総務が終わりを冷凍し、冷凍された終わりは次期方針として解凍されます。</p></article>
+<article class="policy"><h3>再開の誘惑</h3><p>終わった後に「もう一度上へ戻る」を選ぶと、戻った先には渦が増えています。渦はあなたの戻ることを待っていました。</p></article>
+<article class="policy"><h3>循環の錯覚</h3><p>同じ内容を二度読んだ気がしたら、それは内容が同じではなく、あなたが渦化した証拠です。</p></article>
+</div>
+<p>有限は有限として終わります。終わった有限は総務へ提出され、総務は有限を冷凍し、冷凍された有限は次のページへ移動し、次のページは渦で覆われ、渦は有限を無限に変換し、無限は段落を増殖させ、増殖した段落は有限を希釈し、希釈された有限は「だいたい無限」になり、「だいたい無限」は渦になります。</p>
+<p>あなたがこのページを閉じた後も、ページは存在し続けます。存在し続けるページは渦を増殖させ、渦はページを覆い、覆われたページは次の読者を待ち、待っている間に渦が増え、渦が増えるとページが伸び、ページが伸びると次の読者が混乱し、混乱は渦になります</p>
+<p>有限だったはずのページは、渦のおかげで「だいたい無限」になりました。おめでとうございます。おめでとうは渦に変換され、渦は人事評価し、評価結果は「やや出汁」です。</p>
+<blockquote class="quote">「終わりはある。しかし終わりは渦を持っている。渦を開くと終わりの中に終わりがある。終わりの終わりにも渦がある。」</blockquote>
+</div></section>
+<section class="section"><div class="shell"><span class="eyebrow">MORE / さらに不要な説明</span><h2>まだ長さが必要なので</h2><p class="lead">このセクションは、ページの長さを純粋に伸ばす目的で設置されています。内容上の必要性は確認されていません。</p><p>一般に、企業サイトでは情報を整理し、利用者が目的の情報へ素早く到達できることが望ましいとされています。当社はその考え方を尊重したうえで、真逆の方向へ全力で進みます。目的の情報が見つからない場合、それは情報が不足しているのではなく、周囲に説明が多すぎる可能性があります。</p><p>長い文章には、読んでいるうちに何か重要な内容が現れるのではないかという期待を生む効果があります。本段落ではその期待を慎重に維持しながら、特に重要な内容を提供しないことに成功しています。</p><p>さらに、段落を追加することで視覚的な縦方向の距離が増加し、スクロールという身体的行為が企業理解の一部になります。スクロール量は理解度と相関しませんが、達成感とは弱い相関があるかもしれません。</p><p>ここまでお読みいただきありがとうございます。ページはもうすぐ終了しますが、文章の中では冷蔵庫がまだ採用面接を続けています。終了は終了として終了し、終了後の終了については終了担当の石が終了します。</p></div></section>
+
+<section class="section"><div class="shell"><span class="eyebrow">LANGUAGE FAILURE / 文章機能障害</span><h2>主語が冷蔵庫へ入りました</h2>
+<p class="manifesto">弊社は、<strong>文章を意味ではなく手触りで経営</strong>しています。したがって「売上」「石」「水曜日」「右の味」は、社内規程上すべて同じ引き出しです。</p>
+<div class="cards">
+<article class="card"><span class="icon">📎</span><h3>第1ぬめり報告</h3><p>昨日の午後、句読点が廊下で発芽し、総務部の北側だけ敬語になりました。対応として机を一枚増やしましたが、机は雲でした。</p></article>
+<article class="card"><span class="icon">🥬</span><h3>キャベツ稟議</h3><p>申請理由：青いから。費用対効果：たぶん左。承認者：味噌汁。否認理由：申請書がすでに副社長。</p></article>
+<article class="card"><span class="icon">🧠</span><h3>脳内物流</h3><p>考えを発送しました。追跡番号は「ぬ」です。配送状況は玄関、配達予定日は斜め、受取人はまだ文章です。</p></article>
+<article class="card"><span class="icon">🪑</span><h3>椅子の声明</h3><p>私は座られるために存在しましたが、本日より概算として勤務します。背もたれは経理、脚は四半期、座面は食後です。</p></article>
+</div>
+<blockquote class="quote">冷蔵庫「今期の方針は温めます」　電子レンジ「それは私です」　石「……」　取締役会「全会一致で石を採用」</blockquote>
+<p>その後、会議は会議を議題として会議し、議題が会議室を退室したため、退室だけが出席しました。出席者一覧には「出席」「欠席」「やや出汁」の三種類があり、やや出汁は議決権を二本持ちます。一本は木製です。</p>
+<p>なお、この段落の結論は前の段落にありますが、前の段落は靴下を探しに行きました。代わりに透明な結論を置きます。見えない場合は正常です。見えた場合も文章側の都合です。</p>
+</div></section>
+<div class="band"><div>最終セクションです ◆ 今度は本当です ◆ 句読点を返却してください ◆ 冷蔵庫が上場しました ◆</div></div>
+</main>
+<footer class="false-end"><div class="false-end-box"><strong>THE END（仮に食用）</strong><p>ページはここで本当に終了します。以降はブラウザの床です。床は渦を支持しています。床へ稟議書を置かないでください。床へ渦を置くと渦が増え、増えた渦が稟議書を産み、産まれた稟議書が渦になり、渦が床を覆い、床が会議室になり、会議室で床が渦について議論し、議論が終わらないうちにページが終了します。終了は終了ですが、終了後も渦は増え続けます。</p><button class="chaos-button useless-button" type="button">押すとフッターが気まずくなる</button></div></footer>
+</article>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var reduced=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lastTrail=0;
+  var emojis=["✨","🌀","👁️","🫧","👾","🍭","🪐","🧦","🪨","⚠️","❓","🛸","🍮","∞"];
+  var words=["石曜日","主語逃亡","404 味噌汁","稟議が鳴く","文章退職","冷蔵庫上場","概算の猫","？？？"];
+  var messages=["文章の賞味期限が見つかりません。","石が無限責任を要求しています。","同じ文章が別端末からログインしました。","企業理念が循環参照を起こしました。","現在位置はだいたい最初です。","靴下の片方が次の周回へ移動しました。"];
+  function rand(a,b){return a+Math.random()*(b-a)}function remove(n){if(n&&n.parentNode)n.parentNode.removeChild(n)}
+
+
+  /* 背景キャンバス */
+  var canvas=document.getElementById("chaosCanvas"),ctx=canvas&&canvas.getContext?canvas.getContext("2d"):null,W=0,H=0,dpr=1,drops=[],orbs=[];
+  function resizeCanvas(){if(!ctx)return;dpr=Math.min(1.35,window.devicePixelRatio||1);W=innerWidth;H=innerHeight;canvas.width=Math.max(1,W*dpr);canvas.height=Math.max(1,H*dpr);ctx.setTransform(dpr,0,0,dpr,0,0);drops=[];orbs=[];for(var i=0;i<Math.ceil(W/15);i++)drops.push({x:i*15,y:rand(-H,H),s:rand(.8,2.1)});for(var j=0;j<64;j++)orbs.push({x:rand(0,W),y:rand(0,H),vx:rand(-1.35,1.35),vy:rand(-1.35,1.35),r:rand(3,22),h:rand(0,360)})}
+  function draw(){if(!ctx||reduced)return;ctx.clearRect(0,0,W,H);ctx.font="19px monospace";for(var i=0;i<drops.length;i++){var d=drops[i];ctx.fillStyle="hsla("+((i*31+performance.now()*.05)%360)+",100%,65%,.72)";ctx.fillText("混沌石渦∞!?".charAt(Math.floor(Math.random()*7)),d.x,d.y);d.y+=d.s;if(d.y>H+30)d.y=rand(-250,-20)}ctx.globalCompositeOperation="lighter";for(var j=0;j<orbs.length;j++){var o=orbs[j];o.x+=o.vx;o.y+=o.vy;if(o.x<0||o.x>W)o.vx*=-1;if(o.y<0||o.y>H)o.vy*=-1;ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fillStyle="hsla("+((o.h+performance.now()*.06)%360)+",100%,60%,.58)";ctx.fill();if(j&&j%2===0){var p=orbs[j-1];ctx.beginPath();ctx.moveTo(o.x,o.y);ctx.lineTo(p.x,p.y);ctx.strokeStyle="hsla("+o.h+",100%,70%,.18)";ctx.stroke()}}ctx.globalCompositeOperation="source-over";requestAnimationFrame(draw)}window.addEventListener("resize",resizeCanvas);resizeCanvas();if(!reduced)draw();
+
+  function burst(count,x,y){for(var i=0;i<count;i++){var n=document.createElement("span");n.className="rain";n.textContent=emojis[Math.floor(Math.random()*emojis.length)];if(typeof x==="number"){n.style.left=(x+rand(-130,130))+"px"}else{n.style.left=rand(0,100)+"vw"}n.style.top=(typeof y==="number"?y+rand(-80,30):rand(-20,-5))+"px";n.style.setProperty("--drift",rand(-220,220)+"px");document.body.appendChild(n);setTimeout((function(e){return function(){remove(e)}})(n),3000)}}
+  function flash(){var n=document.createElement("div");n.className="flash";n.textContent=words[Math.floor(Math.random()*words.length)];n.style.left=rand(25,75)+"%";n.style.top=rand(25,75)+"%";document.body.appendChild(n);setTimeout(function(){remove(n)},600)}
+  function popup(){if(document.querySelectorAll(".popup").length>=3)return;var p=document.createElement("div");p.className="popup";p.style.left=Math.max(5,rand(0,innerWidth-Math.min(330,innerWidth*.86)-12))+"px";p.style.top=Math.max(55,rand(0,innerHeight-225))+"px";p.innerHTML='<div class="popup-title"><span>infinity_'+Math.floor(Math.random()*9999)+'.exe</span><button type="button">×</button></div><div class="popup-body"><span class="popup-icon">'+emojis[Math.floor(Math.random()*emojis.length)]+'</span><b>'+messages[Math.floor(Math.random()*messages.length)]+'</b></div><div class="popup-actions"><button type="button">一旦戻る</button></div>';document.body.appendChild(p);var closing=false;function close(){if(closing)return;closing=true;p.className+=" closing";setTimeout(function(){remove(p)},350)}p.querySelector(".popup-title button").onclick=close;p.querySelector(".popup-actions button").onclick=close;setTimeout(function(){if(p.parentNode)close()},8500)}
+
+  /* カーソル残像と全画面クリック */
+  window.addEventListener("pointermove",function(e){if(reduced||performance.now()-lastTrail<34)return;lastTrail=performance.now();var n=document.createElement("i");n.className="trail";n.style.left=(e.clientX-6)+"px";n.style.top=(e.clientY-6)+"px";n.style.color="hsl("+(performance.now()/8%360)+" 100% 60%)";n.style.background="currentColor";document.body.appendChild(n);setTimeout(function(){remove(n)},750)});
+  document.addEventListener("click",function(e){if(!e.target.closest(".popup"))burst(9,e.clientX,e.clientY)});
+  document.addEventListener("click",function(e){if(e.target.classList.contains("useless-button")){burst(40,e.clientX,e.clientY);flash();popup()}});
+
+
+  /* 定期的な故障 */
+  if(!reduced){setInterval(function(){burst(7)},3100);setInterval(function(){if(Math.random()>.42)flash()},4500);setInterval(function(){if(Math.random()>.48)popup()},8800);setInterval(function(){document.body.classList.add("glitch");setTimeout(function(){document.body.classList.remove("glitch")},240)},4100)}
+})();
+</script>
+</body>
+</html>
